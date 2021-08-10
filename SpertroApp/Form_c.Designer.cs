@@ -195,6 +195,7 @@
             this.textBox16 = new System.Windows.Forms.TextBox();
             this.label47 = new System.Windows.Forms.Label();
             this.tabPage13 = new System.Windows.Forms.TabPage();
+            this.checkBox10 = new System.Windows.Forms.CheckBox();
             this.tabPage14 = new System.Windows.Forms.TabPage();
             this.groupBox11 = new System.Windows.Forms.GroupBox();
             this.label_LED_blue = new System.Windows.Forms.Label();
@@ -306,7 +307,28 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.ROIImage = new System.Windows.Forms.PictureBox();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
-            this.checkBox10 = new System.Windows.Forms.CheckBox();
+            this.groupBox15 = new System.Windows.Forms.GroupBox();
+            this.label53 = new System.Windows.Forms.Label();
+            this.textBox18 = new System.Windows.Forms.TextBox();
+            this.groupBox16 = new System.Windows.Forms.GroupBox();
+            this.label58 = new System.Windows.Forms.Label();
+            this.textBox20 = new System.Windows.Forms.TextBox();
+            this.label60 = new System.Windows.Forms.Label();
+            this.label61 = new System.Windows.Forms.Label();
+            this.label63 = new System.Windows.Forms.Label();
+            this.label59 = new System.Windows.Forms.Label();
+            this.hg_scale_passng_CKB = new System.Windows.Forms.CheckBox();
+            this.Hg_Ar_scale_PassNgTest_Result_label = new System.Windows.Forms.Label();
+            this.label57 = new System.Windows.Forms.Label();
+            this.white_scale_PassNgTest_Result_label = new System.Windows.Forms.Label();
+            this.label65 = new System.Windows.Forms.Label();
+            this.White_scale_passng_CKB = new System.Windows.Forms.CheckBox();
+            this.label54 = new System.Windows.Forms.Label();
+            this.label56 = new System.Windows.Forms.Label();
+            this.textBox17 = new System.Windows.Forms.TextBox();
+            this.label62 = new System.Windows.Forms.Label();
+            this.label64 = new System.Windows.Forms.Label();
+            this.textBox19 = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.chart_original)).BeginInit();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ud_LaserCount)).BeginInit();
@@ -367,6 +389,8 @@
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ROIImage)).BeginInit();
             this.tableLayoutPanel3.SuspendLayout();
+            this.groupBox15.SuspendLayout();
+            this.groupBox16.SuspendLayout();
             this.SuspendLayout();
             // 
             // timer1
@@ -1731,13 +1755,16 @@
             // 
             // groupBox12
             // 
+            this.groupBox12.Controls.Add(this.white_scale_PassNgTest_Result_label);
+            this.groupBox12.Controls.Add(this.label65);
+            this.groupBox12.Controls.Add(this.White_scale_passng_CKB);
             this.groupBox12.Controls.Add(this.button23);
             this.groupBox12.Controls.Add(this.White_PassNgTest_Result);
             this.groupBox12.Controls.Add(this.label55);
             this.groupBox12.Font = new System.Drawing.Font("標楷體", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.groupBox12.Location = new System.Drawing.Point(328, 145);
+            this.groupBox12.Location = new System.Drawing.Point(328, 158);
             this.groupBox12.Name = "groupBox12";
-            this.groupBox12.Size = new System.Drawing.Size(230, 96);
+            this.groupBox12.Size = new System.Drawing.Size(230, 108);
             this.groupBox12.TabIndex = 179;
             this.groupBox12.TabStop = false;
             this.groupBox12.Text = "白光LED燈波形判定";
@@ -1746,9 +1773,9 @@
             // 
             this.button23.BackColor = System.Drawing.Color.Lime;
             this.button23.Font = new System.Drawing.Font("標楷體", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.button23.Location = new System.Drawing.Point(154, 27);
+            this.button23.Location = new System.Drawing.Point(154, 20);
             this.button23.Name = "button23";
-            this.button23.Size = new System.Drawing.Size(74, 49);
+            this.button23.Size = new System.Drawing.Size(74, 33);
             this.button23.TabIndex = 174;
             this.button23.Text = "Start";
             this.button23.UseVisualStyleBackColor = false;
@@ -1758,7 +1785,7 @@
             // 
             this.White_PassNgTest_Result.AutoSize = true;
             this.White_PassNgTest_Result.Font = new System.Drawing.Font("標楷體", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.White_PassNgTest_Result.Location = new System.Drawing.Point(94, 42);
+            this.White_PassNgTest_Result.Location = new System.Drawing.Point(94, 28);
             this.White_PassNgTest_Result.Name = "White_PassNgTest_Result";
             this.White_PassNgTest_Result.Size = new System.Drawing.Size(46, 21);
             this.White_PassNgTest_Result.TabIndex = 1;
@@ -1767,7 +1794,7 @@
             // label55
             // 
             this.label55.AutoSize = true;
-            this.label55.Location = new System.Drawing.Point(1, 41);
+            this.label55.Location = new System.Drawing.Point(1, 27);
             this.label55.Name = "label55";
             this.label55.Size = new System.Drawing.Size(97, 19);
             this.label55.TabIndex = 0;
@@ -1775,13 +1802,16 @@
             // 
             // groupBox9
             // 
+            this.groupBox9.Controls.Add(this.Hg_Ar_scale_PassNgTest_Result_label);
+            this.groupBox9.Controls.Add(this.label57);
+            this.groupBox9.Controls.Add(this.hg_scale_passng_CKB);
             this.groupBox9.Controls.Add(this.btn_HG_PassNg);
             this.groupBox9.Controls.Add(this.Hg_Ar_PassNgTest_Result);
             this.groupBox9.Controls.Add(this.label50);
             this.groupBox9.Font = new System.Drawing.Font("標楷體", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.groupBox9.Location = new System.Drawing.Point(330, 37);
             this.groupBox9.Name = "groupBox9";
-            this.groupBox9.Size = new System.Drawing.Size(230, 96);
+            this.groupBox9.Size = new System.Drawing.Size(230, 115);
             this.groupBox9.TabIndex = 178;
             this.groupBox9.TabStop = false;
             this.groupBox9.Text = "汞氬燈波形判定";
@@ -1790,9 +1820,9 @@
             // 
             this.btn_HG_PassNg.BackColor = System.Drawing.Color.Lime;
             this.btn_HG_PassNg.Font = new System.Drawing.Font("標楷體", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.btn_HG_PassNg.Location = new System.Drawing.Point(154, 27);
+            this.btn_HG_PassNg.Location = new System.Drawing.Point(154, 15);
             this.btn_HG_PassNg.Name = "btn_HG_PassNg";
-            this.btn_HG_PassNg.Size = new System.Drawing.Size(74, 49);
+            this.btn_HG_PassNg.Size = new System.Drawing.Size(74, 33);
             this.btn_HG_PassNg.TabIndex = 174;
             this.btn_HG_PassNg.Text = "Start";
             this.btn_HG_PassNg.UseVisualStyleBackColor = false;
@@ -1802,7 +1832,7 @@
             // 
             this.Hg_Ar_PassNgTest_Result.AutoSize = true;
             this.Hg_Ar_PassNgTest_Result.Font = new System.Drawing.Font("標楷體", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.Hg_Ar_PassNgTest_Result.Location = new System.Drawing.Point(94, 42);
+            this.Hg_Ar_PassNgTest_Result.Location = new System.Drawing.Point(94, 23);
             this.Hg_Ar_PassNgTest_Result.Name = "Hg_Ar_PassNgTest_Result";
             this.Hg_Ar_PassNgTest_Result.Size = new System.Drawing.Size(46, 21);
             this.Hg_Ar_PassNgTest_Result.TabIndex = 1;
@@ -1811,7 +1841,7 @@
             // label50
             // 
             this.label50.AutoSize = true;
-            this.label50.Location = new System.Drawing.Point(1, 41);
+            this.label50.Location = new System.Drawing.Point(1, 22);
             this.label50.Name = "label50";
             this.label50.Size = new System.Drawing.Size(97, 19);
             this.label50.TabIndex = 0;
@@ -2035,8 +2065,21 @@
             this.tabPage13.Text = "模式設定";
             this.tabPage13.UseVisualStyleBackColor = true;
             // 
+            // checkBox10
+            // 
+            this.checkBox10.AutoSize = true;
+            this.checkBox10.Location = new System.Drawing.Point(255, 14);
+            this.checkBox10.Name = "checkBox10";
+            this.checkBox10.Size = new System.Drawing.Size(185, 16);
+            this.checkBox10.TabIndex = 153;
+            this.checkBox10.Text = "低效率模式 (汞氬燈只取前4根)";
+            this.checkBox10.UseVisualStyleBackColor = true;
+            this.checkBox10.CheckedChanged += new System.EventHandler(this.checkBox10_CheckedChanged);
+            // 
             // tabPage14
             // 
+            this.tabPage14.Controls.Add(this.groupBox16);
+            this.tabPage14.Controls.Add(this.groupBox15);
             this.tabPage14.Controls.Add(this.groupBox11);
             this.tabPage14.Controls.Add(this.groupBox10);
             this.tabPage14.Location = new System.Drawing.Point(4, 25);
@@ -2053,9 +2096,9 @@
             this.groupBox11.Controls.Add(this.LedYellowFWHM_threshold);
             this.groupBox11.Controls.Add(this.LedBlueFWHM_threshold);
             this.groupBox11.Font = new System.Drawing.Font("新細明體", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.groupBox11.Location = new System.Drawing.Point(291, 29);
+            this.groupBox11.Location = new System.Drawing.Point(291, 8);
             this.groupBox11.Name = "groupBox11";
-            this.groupBox11.Size = new System.Drawing.Size(232, 116);
+            this.groupBox11.Size = new System.Drawing.Size(243, 127);
             this.groupBox11.TabIndex = 180;
             this.groupBox11.TabStop = false;
             this.groupBox11.Text = "白光LED燈判斷標準";
@@ -2105,9 +2148,9 @@
             this.groupBox10.Controls.Add(this.FWHM_RMSE_threshold);
             this.groupBox10.Controls.Add(this.BaseLineRMSE_threshold);
             this.groupBox10.Font = new System.Drawing.Font("新細明體", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.groupBox10.Location = new System.Drawing.Point(17, 29);
+            this.groupBox10.Location = new System.Drawing.Point(17, 8);
             this.groupBox10.Name = "groupBox10";
-            this.groupBox10.Size = new System.Drawing.Size(232, 116);
+            this.groupBox10.Size = new System.Drawing.Size(249, 127);
             this.groupBox10.TabIndex = 179;
             this.groupBox10.TabStop = false;
             this.groupBox10.Text = "汞氬燈判斷標準";
@@ -3350,16 +3393,234 @@
             this.tableLayoutPanel3.Size = new System.Drawing.Size(1105, 756);
             this.tableLayoutPanel3.TabIndex = 138;
             // 
-            // checkBox10
+            // groupBox15
             // 
-            this.checkBox10.AutoSize = true;
-            this.checkBox10.Location = new System.Drawing.Point(255, 14);
-            this.checkBox10.Name = "checkBox10";
-            this.checkBox10.Size = new System.Drawing.Size(185, 16);
-            this.checkBox10.TabIndex = 153;
-            this.checkBox10.Text = "低效率模式 (汞氬燈只取前4根)";
-            this.checkBox10.UseVisualStyleBackColor = true;
-            this.checkBox10.CheckedChanged += new System.EventHandler(this.checkBox10_CheckedChanged);
+            this.groupBox15.Controls.Add(this.label62);
+            this.groupBox15.Controls.Add(this.label64);
+            this.groupBox15.Controls.Add(this.textBox19);
+            this.groupBox15.Controls.Add(this.label54);
+            this.groupBox15.Controls.Add(this.label56);
+            this.groupBox15.Controls.Add(this.textBox17);
+            this.groupBox15.Controls.Add(this.label61);
+            this.groupBox15.Controls.Add(this.label60);
+            this.groupBox15.Controls.Add(this.label53);
+            this.groupBox15.Controls.Add(this.textBox18);
+            this.groupBox15.Font = new System.Drawing.Font("新細明體", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.groupBox15.Location = new System.Drawing.Point(17, 136);
+            this.groupBox15.Name = "groupBox15";
+            this.groupBox15.Size = new System.Drawing.Size(249, 127);
+            this.groupBox15.TabIndex = 181;
+            this.groupBox15.TabStop = false;
+            this.groupBox15.Text = "汞氬燈比例判定標準";
+            // 
+            // label53
+            // 
+            this.label53.AutoSize = true;
+            this.label53.Font = new System.Drawing.Font("標楷體", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.label53.Location = new System.Drawing.Point(4, 43);
+            this.label53.Name = "label53";
+            this.label53.Size = new System.Drawing.Size(178, 16);
+            this.label53.TabIndex = 176;
+            this.label53.Text = "Hg-peak1需>Hg-peak3";
+            // 
+            // textBox18
+            // 
+            this.textBox18.Font = new System.Drawing.Font("標楷體", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.textBox18.Location = new System.Drawing.Point(184, 35);
+            this.textBox18.Name = "textBox18";
+            this.textBox18.Size = new System.Drawing.Size(35, 27);
+            this.textBox18.TabIndex = 175;
+            this.textBox18.Text = "0.8";
+            // 
+            // groupBox16
+            // 
+            this.groupBox16.Controls.Add(this.label59);
+            this.groupBox16.Controls.Add(this.label63);
+            this.groupBox16.Controls.Add(this.label58);
+            this.groupBox16.Controls.Add(this.textBox20);
+            this.groupBox16.Font = new System.Drawing.Font("新細明體", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.groupBox16.Location = new System.Drawing.Point(291, 136);
+            this.groupBox16.Name = "groupBox16";
+            this.groupBox16.Size = new System.Drawing.Size(243, 127);
+            this.groupBox16.TabIndex = 182;
+            this.groupBox16.TabStop = false;
+            this.groupBox16.Text = "白光比例判斷標準";
+            // 
+            // label58
+            // 
+            this.label58.AutoSize = true;
+            this.label58.Font = new System.Drawing.Font("標楷體", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.label58.Location = new System.Drawing.Point(18, 66);
+            this.label58.Name = "label58";
+            this.label58.Size = new System.Drawing.Size(102, 16);
+            this.label58.TabIndex = 176;
+            this.label58.Text = "藍光需>黃光";
+            // 
+            // textBox20
+            // 
+            this.textBox20.Font = new System.Drawing.Font("標楷體", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.textBox20.Location = new System.Drawing.Point(127, 63);
+            this.textBox20.Name = "textBox20";
+            this.textBox20.Size = new System.Drawing.Size(35, 27);
+            this.textBox20.TabIndex = 175;
+            this.textBox20.Text = "1.5";
+            // 
+            // label60
+            // 
+            this.label60.AutoSize = true;
+            this.label60.Font = new System.Drawing.Font("標楷體", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.label60.Location = new System.Drawing.Point(6, 21);
+            this.label60.Name = "label60";
+            this.label60.Size = new System.Drawing.Size(175, 16);
+            this.label60.TabIndex = 179;
+            this.label60.Text = "參考標準 : Hg-peak3";
+            this.label60.Click += new System.EventHandler(this.label60_Click);
+            // 
+            // label61
+            // 
+            this.label61.AutoSize = true;
+            this.label61.Font = new System.Drawing.Font("標楷體", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.label61.Location = new System.Drawing.Point(222, 42);
+            this.label61.Name = "label61";
+            this.label61.Size = new System.Drawing.Size(25, 16);
+            this.label61.TabIndex = 180;
+            this.label61.Text = "倍";
+            // 
+            // label63
+            // 
+            this.label63.AutoSize = true;
+            this.label63.Font = new System.Drawing.Font("標楷體", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.label63.Location = new System.Drawing.Point(167, 67);
+            this.label63.Name = "label63";
+            this.label63.Size = new System.Drawing.Size(25, 16);
+            this.label63.TabIndex = 181;
+            this.label63.Text = "倍";
+            // 
+            // label59
+            // 
+            this.label59.AutoSize = true;
+            this.label59.Font = new System.Drawing.Font("標楷體", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.label59.Location = new System.Drawing.Point(18, 29);
+            this.label59.Name = "label59";
+            this.label59.Size = new System.Drawing.Size(171, 16);
+            this.label59.TabIndex = 182;
+            this.label59.Text = "參考標準 : 黃光波峰";
+            // 
+            // hg_scale_passng_CKB
+            // 
+            this.hg_scale_passng_CKB.AutoSize = true;
+            this.hg_scale_passng_CKB.Location = new System.Drawing.Point(7, 55);
+            this.hg_scale_passng_CKB.Name = "hg_scale_passng_CKB";
+            this.hg_scale_passng_CKB.Size = new System.Drawing.Size(175, 23);
+            this.hg_scale_passng_CKB.TabIndex = 175;
+            this.hg_scale_passng_CKB.Text = "汞氬燈比例判定";
+            this.hg_scale_passng_CKB.UseVisualStyleBackColor = true;
+            // 
+            // Hg_Ar_scale_PassNgTest_Result_label
+            // 
+            this.Hg_Ar_scale_PassNgTest_Result_label.AutoSize = true;
+            this.Hg_Ar_scale_PassNgTest_Result_label.Font = new System.Drawing.Font("標楷體", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.Hg_Ar_scale_PassNgTest_Result_label.Location = new System.Drawing.Point(95, 85);
+            this.Hg_Ar_scale_PassNgTest_Result_label.Name = "Hg_Ar_scale_PassNgTest_Result_label";
+            this.Hg_Ar_scale_PassNgTest_Result_label.Size = new System.Drawing.Size(46, 21);
+            this.Hg_Ar_scale_PassNgTest_Result_label.TabIndex = 177;
+            this.Hg_Ar_scale_PassNgTest_Result_label.Text = "---";
+            // 
+            // label57
+            // 
+            this.label57.AutoSize = true;
+            this.label57.Location = new System.Drawing.Point(2, 84);
+            this.label57.Name = "label57";
+            this.label57.Size = new System.Drawing.Size(97, 19);
+            this.label57.TabIndex = 176;
+            this.label57.Text = "Result :";
+            // 
+            // white_scale_PassNgTest_Result_label
+            // 
+            this.white_scale_PassNgTest_Result_label.AutoSize = true;
+            this.white_scale_PassNgTest_Result_label.Font = new System.Drawing.Font("標楷體", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.white_scale_PassNgTest_Result_label.Location = new System.Drawing.Point(96, 87);
+            this.white_scale_PassNgTest_Result_label.Name = "white_scale_PassNgTest_Result_label";
+            this.white_scale_PassNgTest_Result_label.Size = new System.Drawing.Size(46, 21);
+            this.white_scale_PassNgTest_Result_label.TabIndex = 180;
+            this.white_scale_PassNgTest_Result_label.Text = "---";
+            // 
+            // label65
+            // 
+            this.label65.AutoSize = true;
+            this.label65.Location = new System.Drawing.Point(3, 86);
+            this.label65.Name = "label65";
+            this.label65.Size = new System.Drawing.Size(97, 19);
+            this.label65.TabIndex = 179;
+            this.label65.Text = "Result :";
+            // 
+            // White_scale_passng_CKB
+            // 
+            this.White_scale_passng_CKB.AutoSize = true;
+            this.White_scale_passng_CKB.Location = new System.Drawing.Point(12, 58);
+            this.White_scale_passng_CKB.Name = "White_scale_passng_CKB";
+            this.White_scale_passng_CKB.Size = new System.Drawing.Size(154, 23);
+            this.White_scale_passng_CKB.TabIndex = 178;
+            this.White_scale_passng_CKB.Text = "白光比例判定";
+            this.White_scale_passng_CKB.UseVisualStyleBackColor = true;
+            // 
+            // label54
+            // 
+            this.label54.AutoSize = true;
+            this.label54.Font = new System.Drawing.Font("標楷體", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.label54.Location = new System.Drawing.Point(221, 73);
+            this.label54.Name = "label54";
+            this.label54.Size = new System.Drawing.Size(25, 16);
+            this.label54.TabIndex = 183;
+            this.label54.Text = "倍";
+            // 
+            // label56
+            // 
+            this.label56.AutoSize = true;
+            this.label56.Font = new System.Drawing.Font("標楷體", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.label56.Location = new System.Drawing.Point(3, 72);
+            this.label56.Name = "label56";
+            this.label56.Size = new System.Drawing.Size(178, 16);
+            this.label56.TabIndex = 182;
+            this.label56.Text = "Hg-peak2需>Hg-peak3";
+            // 
+            // textBox17
+            // 
+            this.textBox17.Font = new System.Drawing.Font("標楷體", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.textBox17.Location = new System.Drawing.Point(183, 66);
+            this.textBox17.Name = "textBox17";
+            this.textBox17.Size = new System.Drawing.Size(35, 27);
+            this.textBox17.TabIndex = 181;
+            this.textBox17.Text = "0.8";
+            // 
+            // label62
+            // 
+            this.label62.AutoSize = true;
+            this.label62.Font = new System.Drawing.Font("標楷體", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.label62.Location = new System.Drawing.Point(221, 101);
+            this.label62.Name = "label62";
+            this.label62.Size = new System.Drawing.Size(25, 16);
+            this.label62.TabIndex = 186;
+            this.label62.Text = "倍";
+            // 
+            // label64
+            // 
+            this.label64.AutoSize = true;
+            this.label64.Font = new System.Drawing.Font("標楷體", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.label64.Location = new System.Drawing.Point(3, 101);
+            this.label64.Name = "label64";
+            this.label64.Size = new System.Drawing.Size(178, 16);
+            this.label64.TabIndex = 185;
+            this.label64.Text = "Hg-peak4需>Hg-peak3";
+            // 
+            // textBox19
+            // 
+            this.textBox19.Font = new System.Drawing.Font("標楷體", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.textBox19.Location = new System.Drawing.Point(183, 95);
+            this.textBox19.Name = "textBox19";
+            this.textBox19.Size = new System.Drawing.Size(35, 27);
+            this.textBox19.TabIndex = 184;
+            this.textBox19.Text = "0.8";
             // 
             // Form1
             // 
@@ -3467,6 +3728,10 @@
             this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.ROIImage)).EndInit();
             this.tableLayoutPanel3.ResumeLayout(false);
+            this.groupBox15.ResumeLayout(false);
+            this.groupBox15.PerformLayout();
+            this.groupBox16.ResumeLayout(false);
+            this.groupBox16.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -3736,6 +4001,28 @@
         private System.Windows.Forms.Label label52;
         private System.Windows.Forms.TextBox Log_textbox;
         private System.Windows.Forms.CheckBox checkBox10;
+        private System.Windows.Forms.GroupBox groupBox16;
+        private System.Windows.Forms.Label label58;
+        private System.Windows.Forms.TextBox textBox20;
+        private System.Windows.Forms.GroupBox groupBox15;
+        private System.Windows.Forms.Label label60;
+        private System.Windows.Forms.Label label53;
+        private System.Windows.Forms.TextBox textBox18;
+        private System.Windows.Forms.Label label59;
+        private System.Windows.Forms.Label label63;
+        private System.Windows.Forms.Label label61;
+        private System.Windows.Forms.Label white_scale_PassNgTest_Result_label;
+        private System.Windows.Forms.Label label65;
+        private System.Windows.Forms.CheckBox White_scale_passng_CKB;
+        private System.Windows.Forms.Label Hg_Ar_scale_PassNgTest_Result_label;
+        private System.Windows.Forms.Label label57;
+        private System.Windows.Forms.CheckBox hg_scale_passng_CKB;
+        private System.Windows.Forms.Label label62;
+        private System.Windows.Forms.Label label64;
+        private System.Windows.Forms.TextBox textBox19;
+        private System.Windows.Forms.Label label54;
+        private System.Windows.Forms.Label label56;
+        private System.Windows.Forms.TextBox textBox17;
     }
 }
 
