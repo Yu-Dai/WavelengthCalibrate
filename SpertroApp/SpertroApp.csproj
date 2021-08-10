@@ -121,6 +121,9 @@
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
+    <Reference Include="white_lorentz_and_gaussian">
+      <HintPath>..\..\..\matlab01\bin\white_lorentz_and_gaussian\for_redistribution_files_only\white_lorentz_and_gaussian.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Form_c.cs">

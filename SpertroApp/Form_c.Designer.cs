@@ -29,20 +29,20 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Series series4 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Series series5 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Series series6 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Series series7 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Series series8 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Series series9 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Title title1 = new System.Windows.Forms.DataVisualization.Charting.Title();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea7 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Series series19 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea8 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Series series20 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea9 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend3 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series21 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series22 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series23 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series24 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series25 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series26 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series27 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Title title3 = new System.Windows.Forms.DataVisualization.Charting.Title();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.chart_original = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.panel2 = new System.Windows.Forms.Panel();
@@ -170,8 +170,12 @@
             this.tabControl2 = new System.Windows.Forms.TabControl();
             this.tabPage6 = new System.Windows.Forms.TabPage();
             this.panel10 = new System.Windows.Forms.Panel();
-            this.btn_HG_PassNg = new System.Windows.Forms.Button();
+            this.groupBox12 = new System.Windows.Forms.GroupBox();
+            this.button23 = new System.Windows.Forms.Button();
+            this.White_PassNgTest_Result = new System.Windows.Forms.Label();
+            this.label55 = new System.Windows.Forms.Label();
             this.groupBox9 = new System.Windows.Forms.GroupBox();
+            this.btn_HG_PassNg = new System.Windows.Forms.Button();
             this.Hg_Ar_PassNgTest_Result = new System.Windows.Forms.Label();
             this.label50 = new System.Windows.Forms.Label();
             this.button22 = new System.Windows.Forms.Button();
@@ -181,10 +185,6 @@
             this.radioButton2 = new System.Windows.Forms.RadioButton();
             this.tabPage7 = new System.Windows.Forms.TabPage();
             this.tabPage8 = new System.Windows.Forms.TabPage();
-            this.label51 = new System.Windows.Forms.Label();
-            this.FWHM_RMSE_threshold = new System.Windows.Forms.TextBox();
-            this.label49 = new System.Windows.Forms.Label();
-            this.BaseLineRMSE_threshold = new System.Windows.Forms.TextBox();
             this.label46 = new System.Windows.Forms.Label();
             this.textBox15 = new System.Windows.Forms.TextBox();
             this.tabPage9 = new System.Windows.Forms.TabPage();
@@ -195,8 +195,21 @@
             this.textBox16 = new System.Windows.Forms.TextBox();
             this.label47 = new System.Windows.Forms.Label();
             this.tabPage13 = new System.Windows.Forms.TabPage();
+            this.tabPage14 = new System.Windows.Forms.TabPage();
+            this.groupBox11 = new System.Windows.Forms.GroupBox();
+            this.label_LED_blue = new System.Windows.Forms.Label();
+            this.label_led_yellow = new System.Windows.Forms.Label();
+            this.LedYellowFWHM_threshold = new System.Windows.Forms.TextBox();
+            this.LedBlueFWHM_threshold = new System.Windows.Forms.TextBox();
+            this.groupBox10 = new System.Windows.Forms.GroupBox();
+            this.label49 = new System.Windows.Forms.Label();
+            this.label51 = new System.Windows.Forms.Label();
+            this.FWHM_RMSE_threshold = new System.Windows.Forms.TextBox();
+            this.BaseLineRMSE_threshold = new System.Windows.Forms.TextBox();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.panel11 = new System.Windows.Forms.Panel();
+            this.label52 = new System.Windows.Forms.Label();
+            this.Log_textbox = new System.Windows.Forms.TextBox();
             this.panel12 = new System.Windows.Forms.Panel();
             this.button24 = new System.Windows.Forms.Button();
             this.panel9 = new System.Windows.Forms.Panel();
@@ -306,6 +319,7 @@
             this.tabControl2.SuspendLayout();
             this.tabPage6.SuspendLayout();
             this.panel10.SuspendLayout();
+            this.groupBox12.SuspendLayout();
             this.groupBox9.SuspendLayout();
             this.groupBox7.SuspendLayout();
             this.tabPage7.SuspendLayout();
@@ -315,7 +329,11 @@
             this.tabPage11.SuspendLayout();
             this.tabPage12.SuspendLayout();
             this.tabPage13.SuspendLayout();
+            this.tabPage14.SuspendLayout();
+            this.groupBox11.SuspendLayout();
+            this.groupBox10.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
+            this.panel11.SuspendLayout();
             this.panel12.SuspendLayout();
             this.panel9.SuspendLayout();
             this.panel14.SuspendLayout();
@@ -357,18 +375,17 @@
             // 
             // chart_original
             // 
-            chartArea1.Name = "ChartArea1";
-            this.chart_original.ChartAreas.Add(chartArea1);
+            chartArea7.Name = "ChartArea1";
+            this.chart_original.ChartAreas.Add(chartArea7);
             this.chart_original.Dock = System.Windows.Forms.DockStyle.Left;
             this.chart_original.Location = new System.Drawing.Point(0, 0);
             this.chart_original.Name = "chart_original";
-            series1.ChartArea = "ChartArea1";
-            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Point;
-            series1.Name = "Series1";
-            this.chart_original.Series.Add(series1);
+            series19.ChartArea = "ChartArea1";
+            series19.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Point;
+            series19.Name = "Series1";
+            this.chart_original.Series.Add(series19);
             this.chart_original.Size = new System.Drawing.Size(586, 359);
             this.chart_original.TabIndex = 52;
-            this.chart_original.Click += new System.EventHandler(this.chart_original_Click);
             // 
             // panel2
             // 
@@ -1523,14 +1540,14 @@
             // 
             // chart_with_wavelenght
             // 
-            chartArea2.Name = "ChartArea1";
-            this.chart_with_wavelenght.ChartAreas.Add(chartArea2);
+            chartArea8.Name = "ChartArea1";
+            this.chart_with_wavelenght.ChartAreas.Add(chartArea8);
             this.chart_with_wavelenght.Location = new System.Drawing.Point(0, 0);
             this.chart_with_wavelenght.Name = "chart_with_wavelenght";
-            series2.ChartArea = "ChartArea1";
-            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Point;
-            series2.Name = "Series1";
-            this.chart_with_wavelenght.Series.Add(series2);
+            series20.ChartArea = "ChartArea1";
+            series20.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Point;
+            series20.Name = "Series1";
+            this.chart_with_wavelenght.Series.Add(series20);
             this.chart_with_wavelenght.Size = new System.Drawing.Size(364, 278);
             this.chart_with_wavelenght.TabIndex = 53;
             // 
@@ -1674,6 +1691,7 @@
             this.tabControl2.Controls.Add(this.tabPage11);
             this.tabControl2.Controls.Add(this.tabPage12);
             this.tabControl2.Controls.Add(this.tabPage13);
+            this.tabControl2.Controls.Add(this.tabPage14);
             this.tabControl2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControl2.Location = new System.Drawing.Point(242, 440);
             this.tabControl2.Name = "tabControl2";
@@ -1694,7 +1712,7 @@
             // 
             // panel10
             // 
-            this.panel10.Controls.Add(this.btn_HG_PassNg);
+            this.panel10.Controls.Add(this.groupBox12);
             this.panel10.Controls.Add(this.groupBox9);
             this.panel10.Controls.Add(this.button22);
             this.panel10.Controls.Add(this.groupBox7);
@@ -1710,35 +1728,80 @@
             this.panel10.Size = new System.Drawing.Size(564, 269);
             this.panel10.TabIndex = 136;
             // 
+            // groupBox12
+            // 
+            this.groupBox12.Controls.Add(this.button23);
+            this.groupBox12.Controls.Add(this.White_PassNgTest_Result);
+            this.groupBox12.Controls.Add(this.label55);
+            this.groupBox12.Font = new System.Drawing.Font("標楷體", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.groupBox12.Location = new System.Drawing.Point(328, 145);
+            this.groupBox12.Name = "groupBox12";
+            this.groupBox12.Size = new System.Drawing.Size(230, 96);
+            this.groupBox12.TabIndex = 179;
+            this.groupBox12.TabStop = false;
+            this.groupBox12.Text = "白光LED燈波形判定";
+            // 
+            // button23
+            // 
+            this.button23.BackColor = System.Drawing.Color.Lime;
+            this.button23.Font = new System.Drawing.Font("標楷體", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.button23.Location = new System.Drawing.Point(154, 27);
+            this.button23.Name = "button23";
+            this.button23.Size = new System.Drawing.Size(74, 49);
+            this.button23.TabIndex = 174;
+            this.button23.Text = "Start";
+            this.button23.UseVisualStyleBackColor = false;
+            this.button23.Click += new System.EventHandler(this.button23_Click_1);
+            // 
+            // White_PassNgTest_Result
+            // 
+            this.White_PassNgTest_Result.AutoSize = true;
+            this.White_PassNgTest_Result.Font = new System.Drawing.Font("標楷體", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.White_PassNgTest_Result.Location = new System.Drawing.Point(94, 42);
+            this.White_PassNgTest_Result.Name = "White_PassNgTest_Result";
+            this.White_PassNgTest_Result.Size = new System.Drawing.Size(46, 21);
+            this.White_PassNgTest_Result.TabIndex = 1;
+            this.White_PassNgTest_Result.Text = "---";
+            // 
+            // label55
+            // 
+            this.label55.AutoSize = true;
+            this.label55.Location = new System.Drawing.Point(1, 41);
+            this.label55.Name = "label55";
+            this.label55.Size = new System.Drawing.Size(97, 19);
+            this.label55.TabIndex = 0;
+            this.label55.Text = "Result :";
+            // 
+            // groupBox9
+            // 
+            this.groupBox9.Controls.Add(this.btn_HG_PassNg);
+            this.groupBox9.Controls.Add(this.Hg_Ar_PassNgTest_Result);
+            this.groupBox9.Controls.Add(this.label50);
+            this.groupBox9.Font = new System.Drawing.Font("標楷體", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.groupBox9.Location = new System.Drawing.Point(330, 37);
+            this.groupBox9.Name = "groupBox9";
+            this.groupBox9.Size = new System.Drawing.Size(230, 96);
+            this.groupBox9.TabIndex = 178;
+            this.groupBox9.TabStop = false;
+            this.groupBox9.Text = "汞氬燈波形判定";
+            // 
             // btn_HG_PassNg
             // 
             this.btn_HG_PassNg.BackColor = System.Drawing.Color.Lime;
             this.btn_HG_PassNg.Font = new System.Drawing.Font("標楷體", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.btn_HG_PassNg.Location = new System.Drawing.Point(330, 135);
+            this.btn_HG_PassNg.Location = new System.Drawing.Point(154, 27);
             this.btn_HG_PassNg.Name = "btn_HG_PassNg";
-            this.btn_HG_PassNg.Size = new System.Drawing.Size(231, 105);
+            this.btn_HG_PassNg.Size = new System.Drawing.Size(74, 49);
             this.btn_HG_PassNg.TabIndex = 174;
-            this.btn_HG_PassNg.Text = "汞氬波型量化判定";
+            this.btn_HG_PassNg.Text = "Start";
             this.btn_HG_PassNg.UseVisualStyleBackColor = false;
             this.btn_HG_PassNg.Click += new System.EventHandler(this.btn_HG_PassNg_Click_1);
-            // 
-            // groupBox9
-            // 
-            this.groupBox9.Controls.Add(this.Hg_Ar_PassNgTest_Result);
-            this.groupBox9.Controls.Add(this.label50);
-            this.groupBox9.Font = new System.Drawing.Font("標楷體", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.groupBox9.Location = new System.Drawing.Point(331, 51);
-            this.groupBox9.Name = "groupBox9";
-            this.groupBox9.Size = new System.Drawing.Size(230, 78);
-            this.groupBox9.TabIndex = 178;
-            this.groupBox9.TabStop = false;
-            this.groupBox9.Text = "汞氬燈波形判定";
             // 
             // Hg_Ar_PassNgTest_Result
             // 
             this.Hg_Ar_PassNgTest_Result.AutoSize = true;
             this.Hg_Ar_PassNgTest_Result.Font = new System.Drawing.Font("標楷體", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.Hg_Ar_PassNgTest_Result.Location = new System.Drawing.Point(124, 41);
+            this.Hg_Ar_PassNgTest_Result.Location = new System.Drawing.Point(94, 42);
             this.Hg_Ar_PassNgTest_Result.Name = "Hg_Ar_PassNgTest_Result";
             this.Hg_Ar_PassNgTest_Result.Size = new System.Drawing.Size(46, 21);
             this.Hg_Ar_PassNgTest_Result.TabIndex = 1;
@@ -1747,7 +1810,7 @@
             // label50
             // 
             this.label50.AutoSize = true;
-            this.label50.Location = new System.Drawing.Point(16, 41);
+            this.label50.Location = new System.Drawing.Point(1, 41);
             this.label50.Name = "label50";
             this.label50.Size = new System.Drawing.Size(97, 19);
             this.label50.TabIndex = 0;
@@ -1756,7 +1819,7 @@
             // button22
             // 
             this.button22.BackColor = System.Drawing.Color.Red;
-            this.button22.Location = new System.Drawing.Point(333, 0);
+            this.button22.Location = new System.Drawing.Point(479, 3);
             this.button22.Name = "button22";
             this.button22.Size = new System.Drawing.Size(81, 31);
             this.button22.TabIndex = 136;
@@ -1776,7 +1839,6 @@
             this.groupBox7.TabIndex = 135;
             this.groupBox7.TabStop = false;
             this.groupBox7.Text = "選擇光源";
-            this.groupBox7.Enter += new System.EventHandler(this.groupBox7_Enter);
             // 
             // radioButton3
             // 
@@ -1829,10 +1891,6 @@
             // 
             // tabPage8
             // 
-            this.tabPage8.Controls.Add(this.label51);
-            this.tabPage8.Controls.Add(this.FWHM_RMSE_threshold);
-            this.tabPage8.Controls.Add(this.label49);
-            this.tabPage8.Controls.Add(this.BaseLineRMSE_threshold);
             this.tabPage8.Controls.Add(this.label46);
             this.tabPage8.Controls.Add(this.textBox15);
             this.tabPage8.Controls.Add(this.panel8);
@@ -1842,44 +1900,6 @@
             this.tabPage8.TabIndex = 2;
             this.tabPage8.Text = "汞氬設定";
             this.tabPage8.UseVisualStyleBackColor = true;
-            // 
-            // label51
-            // 
-            this.label51.AutoSize = true;
-            this.label51.Font = new System.Drawing.Font("標楷體", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.label51.Location = new System.Drawing.Point(36, 217);
-            this.label51.Name = "label51";
-            this.label51.Size = new System.Drawing.Size(116, 16);
-            this.label51.TabIndex = 178;
-            this.label51.Text = "FWHM_RMSE < ";
-            // 
-            // FWHM_RMSE_threshold
-            // 
-            this.FWHM_RMSE_threshold.Font = new System.Drawing.Font("標楷體", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.FWHM_RMSE_threshold.Location = new System.Drawing.Point(158, 211);
-            this.FWHM_RMSE_threshold.Name = "FWHM_RMSE_threshold";
-            this.FWHM_RMSE_threshold.Size = new System.Drawing.Size(26, 27);
-            this.FWHM_RMSE_threshold.TabIndex = 177;
-            this.FWHM_RMSE_threshold.Text = "8";
-            // 
-            // label49
-            // 
-            this.label49.AutoSize = true;
-            this.label49.Font = new System.Drawing.Font("標楷體", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.label49.Location = new System.Drawing.Point(10, 176);
-            this.label49.Name = "label49";
-            this.label49.Size = new System.Drawing.Size(143, 16);
-            this.label49.TabIndex = 176;
-            this.label49.Text = "BaseLineRMSE < ";
-            // 
-            // BaseLineRMSE_threshold
-            // 
-            this.BaseLineRMSE_threshold.Font = new System.Drawing.Font("標楷體", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.BaseLineRMSE_threshold.Location = new System.Drawing.Point(158, 170);
-            this.BaseLineRMSE_threshold.Name = "BaseLineRMSE_threshold";
-            this.BaseLineRMSE_threshold.Size = new System.Drawing.Size(26, 27);
-            this.BaseLineRMSE_threshold.TabIndex = 175;
-            this.BaseLineRMSE_threshold.Text = "5";
             // 
             // label46
             // 
@@ -2013,6 +2033,121 @@
             this.tabPage13.Text = "模式設定";
             this.tabPage13.UseVisualStyleBackColor = true;
             // 
+            // tabPage14
+            // 
+            this.tabPage14.Controls.Add(this.groupBox11);
+            this.tabPage14.Controls.Add(this.groupBox10);
+            this.tabPage14.Location = new System.Drawing.Point(4, 25);
+            this.tabPage14.Name = "tabPage14";
+            this.tabPage14.Size = new System.Drawing.Size(570, 275);
+            this.tabPage14.TabIndex = 8;
+            this.tabPage14.Text = "PassNgTest";
+            this.tabPage14.UseVisualStyleBackColor = true;
+            // 
+            // groupBox11
+            // 
+            this.groupBox11.Controls.Add(this.label_LED_blue);
+            this.groupBox11.Controls.Add(this.label_led_yellow);
+            this.groupBox11.Controls.Add(this.LedYellowFWHM_threshold);
+            this.groupBox11.Controls.Add(this.LedBlueFWHM_threshold);
+            this.groupBox11.Font = new System.Drawing.Font("新細明體", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.groupBox11.Location = new System.Drawing.Point(291, 29);
+            this.groupBox11.Name = "groupBox11";
+            this.groupBox11.Size = new System.Drawing.Size(232, 116);
+            this.groupBox11.TabIndex = 180;
+            this.groupBox11.TabStop = false;
+            this.groupBox11.Text = "白光LED燈判斷標準";
+            // 
+            // label_LED_blue
+            // 
+            this.label_LED_blue.AutoSize = true;
+            this.label_LED_blue.Font = new System.Drawing.Font("標楷體", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.label_LED_blue.Location = new System.Drawing.Point(18, 38);
+            this.label_LED_blue.Name = "label_LED_blue";
+            this.label_LED_blue.Size = new System.Drawing.Size(114, 16);
+            this.label_LED_blue.TabIndex = 176;
+            this.label_LED_blue.Text = "藍光 FWHM < ";
+            // 
+            // label_led_yellow
+            // 
+            this.label_led_yellow.AutoSize = true;
+            this.label_led_yellow.Font = new System.Drawing.Font("標楷體", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.label_led_yellow.Location = new System.Drawing.Point(18, 79);
+            this.label_led_yellow.Name = "label_led_yellow";
+            this.label_led_yellow.Size = new System.Drawing.Size(114, 16);
+            this.label_led_yellow.TabIndex = 178;
+            this.label_led_yellow.Text = "螢光 FWHM < ";
+            // 
+            // LedYellowFWHM_threshold
+            // 
+            this.LedYellowFWHM_threshold.Font = new System.Drawing.Font("標楷體", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.LedYellowFWHM_threshold.Location = new System.Drawing.Point(151, 73);
+            this.LedYellowFWHM_threshold.Name = "LedYellowFWHM_threshold";
+            this.LedYellowFWHM_threshold.Size = new System.Drawing.Size(55, 27);
+            this.LedYellowFWHM_threshold.TabIndex = 177;
+            this.LedYellowFWHM_threshold.Text = "140";
+            // 
+            // LedBlueFWHM_threshold
+            // 
+            this.LedBlueFWHM_threshold.Font = new System.Drawing.Font("標楷體", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.LedBlueFWHM_threshold.Location = new System.Drawing.Point(151, 31);
+            this.LedBlueFWHM_threshold.Name = "LedBlueFWHM_threshold";
+            this.LedBlueFWHM_threshold.Size = new System.Drawing.Size(55, 27);
+            this.LedBlueFWHM_threshold.TabIndex = 175;
+            this.LedBlueFWHM_threshold.Text = "40";
+            // 
+            // groupBox10
+            // 
+            this.groupBox10.Controls.Add(this.label49);
+            this.groupBox10.Controls.Add(this.label51);
+            this.groupBox10.Controls.Add(this.FWHM_RMSE_threshold);
+            this.groupBox10.Controls.Add(this.BaseLineRMSE_threshold);
+            this.groupBox10.Font = new System.Drawing.Font("新細明體", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.groupBox10.Location = new System.Drawing.Point(17, 29);
+            this.groupBox10.Name = "groupBox10";
+            this.groupBox10.Size = new System.Drawing.Size(232, 116);
+            this.groupBox10.TabIndex = 179;
+            this.groupBox10.TabStop = false;
+            this.groupBox10.Text = "汞氬燈判斷標準";
+            // 
+            // label49
+            // 
+            this.label49.AutoSize = true;
+            this.label49.Font = new System.Drawing.Font("標楷體", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.label49.Location = new System.Drawing.Point(18, 38);
+            this.label49.Name = "label49";
+            this.label49.Size = new System.Drawing.Size(143, 16);
+            this.label49.TabIndex = 176;
+            this.label49.Text = "BaseLineRMSE < ";
+            // 
+            // label51
+            // 
+            this.label51.AutoSize = true;
+            this.label51.Font = new System.Drawing.Font("標楷體", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.label51.Location = new System.Drawing.Point(44, 79);
+            this.label51.Name = "label51";
+            this.label51.Size = new System.Drawing.Size(116, 16);
+            this.label51.TabIndex = 178;
+            this.label51.Text = "FWHM_RMSE < ";
+            // 
+            // FWHM_RMSE_threshold
+            // 
+            this.FWHM_RMSE_threshold.Font = new System.Drawing.Font("標楷體", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.FWHM_RMSE_threshold.Location = new System.Drawing.Point(166, 73);
+            this.FWHM_RMSE_threshold.Name = "FWHM_RMSE_threshold";
+            this.FWHM_RMSE_threshold.Size = new System.Drawing.Size(26, 27);
+            this.FWHM_RMSE_threshold.TabIndex = 177;
+            this.FWHM_RMSE_threshold.Text = "8";
+            // 
+            // BaseLineRMSE_threshold
+            // 
+            this.BaseLineRMSE_threshold.Font = new System.Drawing.Font("標楷體", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.BaseLineRMSE_threshold.Location = new System.Drawing.Point(166, 32);
+            this.BaseLineRMSE_threshold.Name = "BaseLineRMSE_threshold";
+            this.BaseLineRMSE_threshold.Size = new System.Drawing.Size(26, 27);
+            this.BaseLineRMSE_threshold.TabIndex = 175;
+            this.BaseLineRMSE_threshold.Text = "5";
+            // 
             // tableLayoutPanel1
             // 
             this.tableLayoutPanel1.BackColor = System.Drawing.SystemColors.Control;
@@ -2038,13 +2173,34 @@
             // 
             // panel11
             // 
-            this.panel11.BackgroundImage = global::SpertroApp.Properties.Resources.Laser;
-            this.panel11.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.panel11.Controls.Add(this.label52);
+            this.panel11.Controls.Add(this.Log_textbox);
             this.panel11.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel11.Location = new System.Drawing.Point(6, 440);
             this.panel11.Name = "panel11";
             this.panel11.Size = new System.Drawing.Size(227, 304);
-            this.panel11.TabIndex = 0;
+            this.panel11.TabIndex = 122;
+            // 
+            // label52
+            // 
+            this.label52.AutoSize = true;
+            this.label52.Font = new System.Drawing.Font("新細明體", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.label52.Location = new System.Drawing.Point(6, 11);
+            this.label52.Name = "label52";
+            this.label52.Size = new System.Drawing.Size(147, 24);
+            this.label52.TabIndex = 138;
+            this.label52.Text = "Process Log :";
+            // 
+            // Log_textbox
+            // 
+            this.Log_textbox.BackColor = System.Drawing.SystemColors.MenuText;
+            this.Log_textbox.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.Log_textbox.ForeColor = System.Drawing.SystemColors.Menu;
+            this.Log_textbox.Location = new System.Drawing.Point(0, 38);
+            this.Log_textbox.Multiline = true;
+            this.Log_textbox.Name = "Log_textbox";
+            this.Log_textbox.Size = new System.Drawing.Size(227, 266);
+            this.Log_textbox.TabIndex = 137;
             // 
             // panel12
             // 
@@ -3053,61 +3209,61 @@
             // 
             // chart1
             // 
-            chartArea3.Name = "ChartArea1";
-            this.chart1.ChartAreas.Add(chartArea3);
-            legend1.Enabled = false;
-            legend1.Name = "Legend1";
-            legend1.TitleAlignment = System.Drawing.StringAlignment.Far;
-            this.chart1.Legends.Add(legend1);
+            chartArea9.Name = "ChartArea1";
+            this.chart1.ChartAreas.Add(chartArea9);
+            legend3.Enabled = false;
+            legend3.Name = "Legend1";
+            legend3.TitleAlignment = System.Drawing.StringAlignment.Far;
+            this.chart1.Legends.Add(legend3);
             this.chart1.Location = new System.Drawing.Point(9, 58);
             this.chart1.Name = "chart1";
-            series3.ChartArea = "ChartArea1";
-            series3.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
-            series3.Color = System.Drawing.Color.Blue;
-            series3.Legend = "Legend1";
-            series3.Name = "Series1";
-            series4.ChartArea = "ChartArea1";
-            series4.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
-            series4.Color = System.Drawing.Color.Blue;
-            series4.Legend = "Legend1";
-            series4.Name = "Series2";
-            series5.ChartArea = "ChartArea1";
-            series5.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
-            series5.Color = System.Drawing.Color.Blue;
-            series5.Legend = "Legend1";
-            series5.Name = "Series3";
-            series6.ChartArea = "ChartArea1";
-            series6.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
-            series6.Color = System.Drawing.Color.Blue;
-            series6.Legend = "Legend1";
-            series6.Name = "Series4";
-            series7.ChartArea = "ChartArea1";
-            series7.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
-            series7.Color = System.Drawing.Color.Blue;
-            series7.Legend = "Legend1";
-            series7.Name = "Series5";
-            series8.ChartArea = "ChartArea1";
-            series8.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
-            series8.Color = System.Drawing.Color.Blue;
-            series8.Legend = "Legend1";
-            series8.Name = "Series6";
-            series9.ChartArea = "ChartArea1";
-            series9.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
-            series9.Color = System.Drawing.Color.Blue;
-            series9.Legend = "Legend1";
-            series9.Name = "Series7";
-            this.chart1.Series.Add(series3);
-            this.chart1.Series.Add(series4);
-            this.chart1.Series.Add(series5);
-            this.chart1.Series.Add(series6);
-            this.chart1.Series.Add(series7);
-            this.chart1.Series.Add(series8);
-            this.chart1.Series.Add(series9);
+            series21.ChartArea = "ChartArea1";
+            series21.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series21.Color = System.Drawing.Color.Blue;
+            series21.Legend = "Legend1";
+            series21.Name = "Series1";
+            series22.ChartArea = "ChartArea1";
+            series22.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series22.Color = System.Drawing.Color.Blue;
+            series22.Legend = "Legend1";
+            series22.Name = "Series2";
+            series23.ChartArea = "ChartArea1";
+            series23.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series23.Color = System.Drawing.Color.Blue;
+            series23.Legend = "Legend1";
+            series23.Name = "Series3";
+            series24.ChartArea = "ChartArea1";
+            series24.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series24.Color = System.Drawing.Color.Blue;
+            series24.Legend = "Legend1";
+            series24.Name = "Series4";
+            series25.ChartArea = "ChartArea1";
+            series25.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series25.Color = System.Drawing.Color.Blue;
+            series25.Legend = "Legend1";
+            series25.Name = "Series5";
+            series26.ChartArea = "ChartArea1";
+            series26.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series26.Color = System.Drawing.Color.Blue;
+            series26.Legend = "Legend1";
+            series26.Name = "Series6";
+            series27.ChartArea = "ChartArea1";
+            series27.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series27.Color = System.Drawing.Color.Blue;
+            series27.Legend = "Legend1";
+            series27.Name = "Series7";
+            this.chart1.Series.Add(series21);
+            this.chart1.Series.Add(series22);
+            this.chart1.Series.Add(series23);
+            this.chart1.Series.Add(series24);
+            this.chart1.Series.Add(series25);
+            this.chart1.Series.Add(series26);
+            this.chart1.Series.Add(series27);
             this.chart1.Size = new System.Drawing.Size(465, 404);
             this.chart1.TabIndex = 1;
             this.chart1.Text = "chart1";
-            title1.Name = "單根雷射疊圖";
-            this.chart1.Titles.Add(title1);
+            title3.Name = "單根雷射疊圖";
+            this.chart1.Titles.Add(title3);
             // 
             // panel15
             // 
@@ -3227,6 +3383,8 @@
             this.tabPage6.ResumeLayout(false);
             this.panel10.ResumeLayout(false);
             this.panel10.PerformLayout();
+            this.groupBox12.ResumeLayout(false);
+            this.groupBox12.PerformLayout();
             this.groupBox9.ResumeLayout(false);
             this.groupBox9.PerformLayout();
             this.groupBox7.ResumeLayout(false);
@@ -3244,7 +3402,14 @@
             this.tabPage12.PerformLayout();
             this.tabPage13.ResumeLayout(false);
             this.tabPage13.PerformLayout();
+            this.tabPage14.ResumeLayout(false);
+            this.groupBox11.ResumeLayout(false);
+            this.groupBox11.PerformLayout();
+            this.groupBox10.ResumeLayout(false);
+            this.groupBox10.PerformLayout();
             this.tableLayoutPanel1.ResumeLayout(false);
+            this.panel11.ResumeLayout(false);
+            this.panel11.PerformLayout();
             this.panel12.ResumeLayout(false);
             this.panel12.PerformLayout();
             this.panel9.ResumeLayout(false);
@@ -3531,7 +3696,6 @@
         private System.Windows.Forms.DataVisualization.Charting.Chart chart1;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
         private System.Windows.Forms.Panel panel16;
-        private System.Windows.Forms.Panel panel11;
         private System.Windows.Forms.Button button24;
         private System.Windows.Forms.TextBox textBox16;
         private System.Windows.Forms.Label label47;
@@ -3544,6 +3708,20 @@
         private System.Windows.Forms.TextBox FWHM_RMSE_threshold;
         private System.Windows.Forms.Label label49;
         private System.Windows.Forms.TextBox BaseLineRMSE_threshold;
+        private System.Windows.Forms.GroupBox groupBox12;
+        private System.Windows.Forms.Button button23;
+        private System.Windows.Forms.Label White_PassNgTest_Result;
+        private System.Windows.Forms.Label label55;
+        private System.Windows.Forms.TabPage tabPage14;
+        private System.Windows.Forms.GroupBox groupBox11;
+        private System.Windows.Forms.Label label_LED_blue;
+        private System.Windows.Forms.Label label_led_yellow;
+        private System.Windows.Forms.TextBox LedYellowFWHM_threshold;
+        private System.Windows.Forms.TextBox LedBlueFWHM_threshold;
+        private System.Windows.Forms.GroupBox groupBox10;
+        private System.Windows.Forms.Panel panel11;
+        private System.Windows.Forms.Label label52;
+        private System.Windows.Forms.TextBox Log_textbox;
     }
 }
 

@@ -81,7 +81,6 @@
             this.label17 = new System.Windows.Forms.Label();
             this.label18 = new System.Windows.Forms.Label();
             this.label19 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
             this.RMS_FWHM_spot_size_STD = new System.Windows.Forms.TextBox();
             this.RMS_FWHM_spot_size_in_um = new System.Windows.Forms.TextBox();
             this.RMS_FWHM_resolution_STD = new System.Windows.Forms.TextBox();
@@ -128,6 +127,7 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
+            this.textBox1 = new System.Windows.Forms.TextBox();
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.richTextBox1 = new System.Windows.Forms.RichTextBox();
@@ -135,8 +135,8 @@
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.tabPage3 = new System.Windows.Forms.TabPage();
-            this.tabPage4 = new System.Windows.Forms.TabPage();
             this.textBox2 = new System.Windows.Forms.TextBox();
+            this.tabPage4 = new System.Windows.Forms.TabPage();
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.button5 = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
@@ -498,7 +498,7 @@
             this.Autoscaling_exposure_initial_value.Name = "Autoscaling_exposure_initial_value";
             this.Autoscaling_exposure_initial_value.Size = new System.Drawing.Size(100, 22);
             this.Autoscaling_exposure_initial_value.TabIndex = 80;
-            this.Autoscaling_exposure_initial_value.Text = "60000";
+            this.Autoscaling_exposure_initial_value.Text = "50000";
             // 
             // Noise_rms_in_256
             // 
@@ -685,14 +685,6 @@
             this.label19.Size = new System.Drawing.Size(77, 12);
             this.label19.TabIndex = 57;
             this.label19.Text = "SNR_full_scale";
-            // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(18, 6);
-            this.textBox1.Multiline = true;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(634, 680);
-            this.textBox1.TabIndex = 56;
             // 
             // RMS_FWHM_spot_size_STD
             // 
@@ -1083,6 +1075,14 @@
             this.label1.Text = "ID";
             this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(18, 6);
+            this.textBox1.Multiline = true;
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(634, 680);
+            this.textBox1.TabIndex = 56;
+            // 
             // button1
             // 
             this.button1.Location = new System.Drawing.Point(689, 72);
@@ -1155,6 +1155,14 @@
             this.tabPage3.Text = "Hg_Ar_jason";
             this.tabPage3.UseVisualStyleBackColor = true;
             // 
+            // textBox2
+            // 
+            this.textBox2.Location = new System.Drawing.Point(22, 8);
+            this.textBox2.Multiline = true;
+            this.textBox2.Name = "textBox2";
+            this.textBox2.Size = new System.Drawing.Size(634, 680);
+            this.textBox2.TabIndex = 57;
+            // 
             // tabPage4
             // 
             this.tabPage4.Controls.Add(this.textBox3);
@@ -1164,14 +1172,6 @@
             this.tabPage4.TabIndex = 3;
             this.tabPage4.Text = "Comebine_jason";
             this.tabPage4.UseVisualStyleBackColor = true;
-            // 
-            // textBox2
-            // 
-            this.textBox2.Location = new System.Drawing.Point(22, 8);
-            this.textBox2.Multiline = true;
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(634, 680);
-            this.textBox2.TabIndex = 57;
             // 
             // textBox3
             // 

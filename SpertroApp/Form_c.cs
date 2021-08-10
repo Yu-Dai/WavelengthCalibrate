@@ -28,16 +28,24 @@ namespace SpertroApp
         //AG 處理        
         public int sepPoint;
         public bool isGetSepPoint = false;
+        public bool is626 = true;
+        //進度顯示
+        public string Process_Now = "";
+        //White Pass Ng Test
+        public bool isWhite_PassNgTest = false; 
+        public bool isWhitePass = false;
+        public bool isWhiteNg = false;
+        List<double> White_PassNg = new List<double>();
         //HG_AR_PASS_NG_TEST
         public bool isPass = false;
         public bool isNg = false;
+        List<double> Hg_Ar_PassNg = new List<double>();
+        public bool isHg_Ar_PassNgTest = false;
         //-------------------------
         public string isb_save_path = "";
         //Lorentzan
         List<int> pixel_for_Lorentzan = new List<int>();
         //結合量測
-        List<double> Hg_Ar_PassNg = new List<double>();
-        public bool isHg_Ar_PassNgTest = false;
         List<double> Hg_Ar = new List<double>();
         List<double> Comebine_Wavelenght = new List<double>();
         List<double> Comebine_Pixel = new List<double>();
@@ -98,6 +106,8 @@ namespace SpertroApp
         public bool Hg2WFHM = false;
         public bool Hg3WFHM = false;
         public bool Hg4WFHM = false;
+        public bool Hg5WFHM = false;
+        public bool Hg6WFHM = false;
 
         //單根模式的疊圖截圖
         public Bitmap p1;
@@ -129,6 +139,7 @@ namespace SpertroApp
         //SCID
         public string this_SC_ID = "";
         //汞氬燈-------------------------------------
+        public bool isGet_Hg = false; 
         public bool isHg_Ar = false;
         private int isFirtCacular = 0;
         public string report = "";
@@ -362,6 +373,17 @@ namespace SpertroApp
             { Hg_Ar_PassNgTest_Result.Text = "Pass"; isPass = false; }
             else if (isNg)
             { Hg_Ar_PassNgTest_Result.Text = "NG"; isNg = false; }
+            if (isWhitePass)
+            { White_PassNgTest_Result.Text = "Pass"; isPass = false; }
+            else if (isWhiteNg)
+            { White_PassNgTest_Result.Text = "NG"; isNg = false; }
+            if (string.IsNullOrEmpty(Process_Now) == false)
+            {
+                Log_textbox.Text +=DateTime.Now.ToString("yyyy/MM/dd/hh/mm/ss")+" : "+"\r\n" + Process_Now + "\r\n";
+                Log_textbox.ScrollBars = ScrollBars.Vertical;
+                Log_textbox.SelectionStart = Log_textbox.Text.Length;
+                Log_textbox.ScrollToCaret();
+            }
             //progressROI.Value = proc;
             richTextBox1.Text = Context;
             richTextBox2.Text = Result;
@@ -491,6 +513,8 @@ namespace SpertroApp
 
                 switch (iTask)
                 {
+                    
+
                     case 1:
                        
                         //   MessageBox.Show("開始第一階段?");
@@ -525,9 +549,10 @@ namespace SpertroApp
                         }
                         break;
                     case 100://ROI預覽
+                        Process_Now = "ROI 預覽";
                         ROI_Y = Step_1.RoiScan(BufferToImage(FULLimgbuffer))["y"];
                         isGetROI = true;
-                        iTask = 0;
+                        iTask = 1300;
                         break;
 
                     case 150: //s
@@ -536,6 +561,7 @@ namespace SpertroApp
                         break;
 
                     case 200:  //RoiScan
+                        Process_Now = "ROI Scan";
                         iTask = 300;                      
                         ROI_Y = Step_1.RoiScan(BufferToImage(FULLimgbuffer))["y"];
                         isGetROI = true;
@@ -576,6 +602,7 @@ namespace SpertroApp
 
 
                     case 500: //刷新 //全部關掉
+                        Process_Now = "關閉所有雷射";
                         SendData(Encoding.ASCII.GetBytes("CHAN 1;LAS:OUT 0;CHAN 2;LAS:OUT 0;CHAN 3;LAS:OUT 0;CHAN 4;LAS:OUT 0;CHAN 5;LAS:OUT 0;CHAN 6;LAS:OUT 0;CHAN 7;LAS:OUT 0;CHAN 8;LAS:OUT 0;\r\n"));
                         Thread.Sleep(1000);
                         if (isGetDarkChart == false)
@@ -596,10 +623,11 @@ namespace SpertroApp
                         iTask = 600;
                         if (AllinOneMode.Checked)//進入一次八根
                         {
+                            Process_Now = "雷射同時全開模式";
                             iTask = 601;
                         }
                         if (checkBox5.Checked)
-                        { iTask = 600; }
+                        { Process_Now = "單雷射模式"; iTask = 600; }
                         break;
                     case 600://先經判別後 開啟單根雷射
 
@@ -608,6 +636,7 @@ namespace SpertroApp
                             case 1:
                                 if (isch1)
                                 {
+                                    Process_Now = "開啟雷射1";
                                     SendData(Encoding.ASCII.GetBytes("BEEP 2;CHAN " + Laser + ";LAS:OUT 1\r\n"));
                                     Thread.Sleep(3000);
                                     iTask = 625;
@@ -617,6 +646,7 @@ namespace SpertroApp
                             case 2:
                                 if (isch2)
                                 {
+                                    Process_Now = "開啟雷射2";
                                     SendData(Encoding.ASCII.GetBytes("BEEP 2;CHAN " + Laser + ";LAS:OUT 1\r\n"));
                                     Thread.Sleep(3000);
                                     iTask = 625;
@@ -626,6 +656,7 @@ namespace SpertroApp
                             case 3:
                                 if (isch3)
                                 {
+                                    Process_Now = "開啟雷射3";
                                     SendData(Encoding.ASCII.GetBytes("BEEP 2;CHAN " + Laser + ";LAS:OUT 1\r\n"));
                                     Thread.Sleep(3000);
                                     iTask = 625;
@@ -635,6 +666,7 @@ namespace SpertroApp
                             case 4:
                                 if (isch4)
                                 {
+                                    Process_Now = "開啟雷射4";
                                     SendData(Encoding.ASCII.GetBytes("BEEP 2;CHAN " + Laser + ";LAS:OUT 1\r\n"));
                                     Thread.Sleep(3000);
                                     iTask = 625;
@@ -644,6 +676,7 @@ namespace SpertroApp
                             case 5:
                                 if (isch5)
                                 {
+                                    Process_Now = "開啟雷射5";
                                     SendData(Encoding.ASCII.GetBytes("BEEP 2;CHAN " + Laser + ";LAS:OUT 1\r\n"));
                                     Thread.Sleep(3000);
                                     iTask = 625;
@@ -653,6 +686,7 @@ namespace SpertroApp
                             case 6:
                                 if (isch6)
                                 {
+                                    Process_Now = "開啟雷射6";
                                     SendData(Encoding.ASCII.GetBytes("BEEP 2;CHAN " + Laser + ";LAS:OUT 1\r\n"));
                                     Thread.Sleep(3000);
                                     iTask = 625;
@@ -662,6 +696,7 @@ namespace SpertroApp
                             case 7:
                                 if (isch7)
                                 {
+                                    Process_Now = "開啟雷射7";
                                     SendData(Encoding.ASCII.GetBytes("BEEP 2;CHAN " + Laser + ";LAS:OUT 1\r\n"));
                                     Thread.Sleep(3000);
                                     iTask = 625;
@@ -671,6 +706,7 @@ namespace SpertroApp
                             case 8:
                                 if (isch8)
                                 {
+                                    Process_Now = "開啟雷射8";
                                     SendData(Encoding.ASCII.GetBytes("BEEP 2;CHAN " + Laser + ";LAS:OUT 1\r\n"));
                                     Thread.Sleep(3000);
                                     iTask = 625;
@@ -696,6 +732,7 @@ namespace SpertroApp
                     case 601://開啟每根雷射，先確認該根雷射是否被選擇
                         if (AllinOneMode.Checked)
                         {
+                            Process_Now = "同時開起被選取的雷射";
                             if (isch1)
                             { SendData(Encoding.ASCII.GetBytes("CHAN 1;LAS:OUT 1;\r\n")); Thread.Sleep(150); }
                             if (isch2)
@@ -728,26 +765,36 @@ namespace SpertroApp
                         break;
 
                     case 615: //汞氬燈與白燈進入點與移動ROI至無光區
-
-                        ROI_Y = 0;
+                        if (isHg_Ar)
+                        { Process_Now = "汞氬燈量測開始"; }
+                        else if (onlyWhite)
+                        { Process_Now = "白光量測開始"; }
+                        ROI_Y = 0; //ROI歸0
                         iTask = 620;
                         break;
 
                     case 620://取暗光譜
+                        
                         if (isHg_Ar)
                         {
                             if (isFirtCacular == 1)
                             {
                                 Thread.Sleep(500);
-                                Dark_Intensity = RealTime_Original_Intensity;
+                                Process_Now = "取暗光譜";
+                                for (int i = 0; i < RealTime_Original_Intensity.Count; i++)
+                                {
+                                    Dark_Intensity.Add(RealTime_Original_Intensity[i]);
+                                }
                                 isFirtCacular++;
                             }
+                            Process_Now = "ROI Scan  開始";
                             iTask = 622;
                         }
                         else if (onlyWhite)
                         {
                             if (isGetDarkChart == false)
                             {
+                                Process_Now = "存暗光譜圖";
                                 chartScreenShot getDark = new chartScreenShot(chartScreenshot);
                                 this.Invoke(getDark, "_White_Dark_", FULLimgbuffer);
                                 isGetDarkChart = true;
@@ -755,6 +802,7 @@ namespace SpertroApp
                             iTask = 625;
                         }
                         break;
+                   
                     case 622:
                         if (isGetROI == false)
                         {
@@ -769,18 +817,18 @@ namespace SpertroApp
                         isGetSepPoint = true;
                         iTask = 625;
                         break;
-                      
-                    case 625://101->auto-scaling  
+        
+
+                    case 625://ROI Scan 
                         
                         if (isHg_Ar)
                         {                           
                             Set_Dg(255);
                             Set_Back(3);
-
                             if (isGet_Ar == false)
                             {
                                 Set_Gamma(gamma_number);
-                                iTask = 627; //進入判別AR 是否過曝
+                                iTask = 626; //進入判別AR 是否過曝
                             }
                             else
                             {
@@ -790,13 +838,14 @@ namespace SpertroApp
                                 }
                                 else
                                 {
-                                    
+
                                     Set_Gamma(gamma_number);
-                                   
+                                    Thread.Sleep(1000);
                                 }
-                                iTask = 630; //進入AUTOSCALING
+
+                                iTask = 630;
                             }
-                            
+                            Task.Delay(1500);
                         }
                         else if (onlyWhite)
                         {
@@ -812,6 +861,7 @@ namespace SpertroApp
                             }
                             if (isGetROI == false)
                             {
+                                Process_Now = "ROI Scan  開始";
                                 Dark_Intensity = RealTime_Original_Intensity;
                                 ROI_Y = Step_1.RoiScan(BufferToImage(FULLimgbuffer))["y"];
                                 isGetROI = true;
@@ -836,36 +886,43 @@ namespace SpertroApp
                             iTask = 630;
                         }
                         Original_Intensity = RealTime_Original_Intensity;
-                        Thread.Sleep(1500);
+                        break;
+                    case 626:
+                        Thread.Sleep(1000);
+                        iTask = 627;
                         break;
 
                     case 627: //ar 處理(判斷亮度參數調最高後AR是否過曝)
-                            List<double> ar_Intensity = new List<double>();
+
+                        List<double> ar_Intensity = new List<double>();
                         for (int i = 0; i < RealTime_Original_Intensity.Count; i++)
                         {
                             ar_Intensity.Add(RealTime_Original_Intensity[i]);
                         }
-                            //Ar_Intensity = RealTime_Original_Intensity;
-                             ar_Intensity.RemoveRange(0, Convert.ToInt32(textBox15.Text));                           
-                            if (ar_Intensity.Max() > 250)
+                        //Ar_Intensity = RealTime_Original_Intensity;
+                        ar_Intensity.RemoveRange(0, Convert.ToInt32(textBox15.Text));
+                        if (ar_Intensity.Max() > 250)
+                        {
+                            gamma_number = gamma_number - 50;
+                            iTask = 625;
+                        }
+                        else
+                        {
+                            for (int i = 0; i < RealTime_Original_Intensity.Count; i++)
                             {
-                                gamma_number = gamma_number - 50;
-                                iTask = 625;
+                                Ar_Intensity.Add(RealTime_Original_Intensity[i]);
                             }
-                            else
-                            {
-                                Ar_Intensity = RealTime_Original_Intensity;
-                                gamma_number = 100;
-                                Set_Gamma(gamma_number);
-                                isGet_Ar = true;
-                                iTask = 630;
-                            }
-                        Task.Delay(500); // delay500ms
-
-                        break;
+                            gamma_number = 100;
+                            Set_Gamma(gamma_number);
+                            isGet_Ar = true;
+                            iTask = 630;
+                        }
+                        Thread.Sleep(500); // delay500ms
+                       break;
 
                     case 630:
-                       
+                        Process_Now = "Auto-Scaling 開始";
+                        int times = 0;
                         dg_set.Clear();
                         Max_Intensity.Clear();
                         //Step 0 找到最大值的位置 紀錄此時的"dg,max",index
@@ -873,7 +930,14 @@ namespace SpertroApp
                         if (result_buffer[1] >= 250)
                         {
                             if (result_buffer[0] == 32)
-                            { iTask = 0; MessageBox.Show("參數已達最低仍過瞨"); }
+                            { 
+                                MessageBox.Show("參數已達最低仍過瞨");
+                                if (times > 2)
+                                {
+                                    iTask = 640;
+                                }
+                                times++;  
+                            }
                             else
                             {
                                 iTask = 630;
@@ -888,7 +952,7 @@ namespace SpertroApp
                             //  Set_Dg_half();//-------------
                             iTask = 635;
                         }
-                        Thread.Sleep(1500);
+                        Thread.Sleep(1000);
                         break;
 
                     case 635:
@@ -934,7 +998,6 @@ namespace SpertroApp
                                     Set_Dg(show_new_dg);
                                     Index_of_Max = 0;
                                     iTask = 640;
-                                    isGet_Ar = false;
                                 }
                                 else
                                 {
@@ -945,7 +1008,6 @@ namespace SpertroApp
                             else
                             {
                                 Set_Dg(show_new_dg);
-                                isGet_Ar = false;
                                 iTask = 640;
                             }
                         }
@@ -956,6 +1018,7 @@ namespace SpertroApp
 
                     case 638:
                         iTask = 640;
+                        Process_Now = "白光 Noise 參數計算";
                         //-------------------------------白光Noise計算----------------------------------
                         List<double> White_Noise = new List<double>();
                         double mean_of_Noise = 0;
@@ -986,8 +1049,7 @@ namespace SpertroApp
                     case 640: //將CHART 光譜圖存成圖檔
                         iTask = 650;
                         chartScreenShot css = new chartScreenShot(chartScreenshot);
-
-
+                        Process_Now = "存光譜圖檔";
                         if (isHg_Ar)
                         {
                           
@@ -1011,7 +1073,7 @@ namespace SpertroApp
 
 
                     case 650: //取Original N次平均
-
+                        Process_Now ="光譜數據取"+ numericUpDown2.Value.ToString() + "次平均";
                         if (avg < numericUpDown2.Value)
                         {
 
@@ -1042,7 +1104,7 @@ namespace SpertroApp
                         iTask = 750;
                         break;
 
-                    case 701:  //關每根雷射  
+                    case 701:  //關每根雷射
                         if (isHg_Ar)
                         {
                             if (isHg_Ar_PassNgTest)
@@ -1058,6 +1120,7 @@ namespace SpertroApp
                         { iTask = 790; }
                         else
                         {
+                            Process_Now = "關閉雷射";
                             SendData(Encoding.ASCII.GetBytes("CHAN 1;LAS:OUT 0;CHAN 2;LAS:OUT 0;CHAN 3;LAS:OUT 0;CHAN 4;LAS:OUT 0;CHAN 5;LAS:OUT 0;CHAN 6;LAS:OUT 0;CHAN 7;LAS:OUT 0;CHAN 8;LAS:OUT 0;\r\n"));
 
                             Thread.Sleep(2000);
@@ -1070,7 +1133,7 @@ namespace SpertroApp
 
                         if (AllinOneMode.Checked && isHg_Ar == false)
                         {
-
+                            Process_Now = "扣除暗光譜";
                             Dark_Intensity = RealTime_Original_Intensity;
                             Pure_Intensity = Math_Methods.Remove_BaseLine(Original_Intensity, Dark_Intensity);
 
@@ -1078,13 +1141,15 @@ namespace SpertroApp
                         }
                         else if (isHg_Ar)
                         {
-                            Ar_Intensity = Math_Methods.Remove_BaseLine(Ar_Intensity, Dark_Intensity);
+                            Process_Now = "扣除暗光譜";
+                            //Ar_Intensity = Math_Methods.Remove_BaseLine(Ar_Intensity, Dark_Intensity);
                             Pure_Intensity = Math_Methods.Remove_BaseLine(Original_Intensity, Dark_Intensity);
                             iTask = 775;
                         }
 
                         else if (checkBox5.Checked && isHg_Ar == false && onlyWhite == false)
                         {
+                            Process_Now = "存RAW DATA 與扣除暗光譜";
                             //-------------------------------------------存RAW_DATA-------------------------------------------------------------
                             Dark_Intensity = RealTime_Original_Intensity;
                             List<string> original = new List<string>();
@@ -1101,65 +1166,6 @@ namespace SpertroApp
                             File.WriteAllLines(@"校正結果\" + this_SC_ID + @"\" + "RawData" + @"\" + this_SC_ID + $"_Dark_of_Laser_{Laser}" + "Intensity_" + DateTime.Now.ToString("yyyy-MM-dd-HH-mm") + "_.txt", dark_Int.ToArray());
                             iTask = 780;
                             Pure_Intensity = Math_Methods.Remove_BaseLine(Original_Intensity, Dark_Intensity);
-                            /*
-                            //---------------------------------------------------------------------------------------------------------------------
-                            int Max_Index = 0;
-                            bool isend1 = false;
-                            bool isend2 = false;
-                            bool end = false;
-                            double avg = 0;
-                            int i = 1;
-                            int right_bounded = 0;
-                            int left_bounded = 0;
-                            Pure_Intensity = Math_Methods.Remove_BaseLine(Original_Intensity, Dark_Intensity);
-                            Save_Laser_Intensity = Pure_Intensity;
-                            avg = Dark_Intensity.Average();
-                            if (Laser == 2) //暫時改2
-                            {
-                                Laser_Intensity = Pure_Intensity;
-                            }
-                            else
-                            {
-                                Max_Index = Save_Laser_Intensity.IndexOf(Save_Laser_Intensity.Max());
-                                while (end == false)
-                                {
-                                    if (Save_Laser_Intensity[Max_Index + i] < avg && isend1 == false)
-                                    {
-                                        right_bounded = Max_Index + i;
-                                        isend1 = true;
-                                    }
-                                    else if (Save_Laser_Intensity[Max_Index - i] < avg && isend2 == false)
-                                    {
-                                        left_bounded = Max_Index - i;
-                                        isend2 = true;
-                                    }
-                                    else if (isend1 && isend2)
-                                    {
-                                        end = true;
-                                    }
-                                    else
-                                    { i++; }
-                                }
-
-                                Laser_Intensity.RemoveRange(left_bounded, right_bounded - left_bounded);
-
-                                for (int item = left_bounded; item < right_bounded; item++)
-                                {
-                                    Laser_Intensity.Insert(item, Save_Laser_Intensity[item]);
-                                }
-                            }
-                            if (Laser == 8)
-                            {
-                                Pure_Intensity = Laser_Intensity;
-                                iTask = 775;
-                            }
-                            else
-                            {
-                                Laser++;
-                                gamma_number = 100;
-                                iTask = 600;
-                            }
-                            */
                         }
                         else
                         {
@@ -1174,20 +1180,14 @@ namespace SpertroApp
                         break;
 
                     case 775:  //計算Noise RMS
+                        Process_Now = "計算Noise RMS";
                         int c = 0;
-                        //double mean_of_Noise = 0;
                         double sqr_of_Noise = 0;
                         for (int i = 100; i < 200; i++)
                         {
                             Noise[c] = Pure_Intensity[i];
                             c++;
                         }
-                        /*for (int i = 0; i < Noise.Count(); i++)
-                        {
-                            mean_of_Noise += Noise[i];
-                        }
-                        mean_of_Noise = mean_of_Noise / Noise.Count();
-                        */
                         for (int i = 0; i < Noise.Count(); i++)
                         {
                             sqr_of_Noise += Math.Pow(Noise[i], 2);
@@ -1196,16 +1196,14 @@ namespace SpertroApp
                         Dynamic_Range = 255 / RMS_of_Noise;
                         max_intensity = Pure_Intensity.Max();
                         Pixel_of_maxIntensity = Pure_Intensity.IndexOf(max_intensity);
-
                         iTask = 780;
-
-
                         break;
                     case 780:  //篩選有用到的波長，並丟入FINDPEAKS中運算
                        
                         iTask = 785;
                         if (isHg_Ar)
                         {
+                            Process_Now = "汞氬燈擬合波長篩選";
                             deltaL.Clear();
                             Wavelength.Clear();
                             #region 汞氬燈波長篩選
@@ -1226,6 +1224,7 @@ namespace SpertroApp
                         }
                         else if(isGetWavelengh == false && isLaser)
                         {
+                            Process_Now = "雷射擬合波長篩選";
                             #region 雷射波長篩選
                             Wavelength.Clear();
                             if (isch1)
@@ -1264,14 +1263,15 @@ namespace SpertroApp
                     case 785:
                         if (isHg_Ar)
                         {
+                            Process_Now = "汞氬燈波峰偵測開始";
                             for (int i = 0; i < Pure_Intensity.Count; i++)
                             {
                                 Hg_Ar.Add(Pure_Intensity[i]);
                             }
                             Hg_Ar.RemoveRange(Convert.ToInt32(textBox15.Text), Hg_Ar.Count-Convert.ToInt32(textBox15.Text));
-                            for (int t = Convert.ToInt32(textBox15.Text); t < Ar_Intensity.Count; t++)//存著Hg_Ar 供之後畫圖
+                            for (int i = sepPoint; i < Ar_Intensity.Count; i++)//存著Hg_Ar 供之後畫圖
                             {
-                                Hg_Ar.Add(Ar_Intensity[t]);
+                                Hg_Ar.Add(Ar_Intensity[i]);
                             }
                             Dictionary<string, List<double>> Gaus_FWHL_Coef_Set = new Dictionary<string, List<double>>();
                             Gaus_FWHL_Coef_Set = Math_Methods.Hg_FindPeak_And_Gaussian(Pure_Intensity, Wavelength, Convert.ToDouble(textBox12.Text), Convert.ToDouble(textBox13.Text), Convert.ToDouble(textBox14.Text));
@@ -1305,10 +1305,12 @@ namespace SpertroApp
                                 List<double> L_for_Lorentz = new List<double>();
                                 List<double> L_after_Lorentz = new List<double>();
                                 List<int> L_pixel_for_Lorentz = new List<int>();
+                                double L_FWHM;
                                 int thresold_k = 2;
                                 switch (Laser)
                                 {
                                     case 1:
+                                        Process_Now = "雷射1勞倫茲擬合與波峰偵測";
                                         //----------------------------------------------------------------
                                         for (int i = 0; i < 50; i++)
                                         {
@@ -1342,7 +1344,7 @@ namespace SpertroApp
                                             p_++;
                                         }
 
-                                        L_after_Lorentz = Math_Methods.LorentzanFit(L_for_Lorentz, L_pixel_for_Lorentz);
+                                        L_after_Lorentz = Math_Methods.LorentzanFit(L_for_Lorentz, L_pixel_for_Lorentz,out L_FWHM);
 
                                         for (int i = 0; i < Pure_Intensity.Count; i++)
                                         {                                          
@@ -1357,7 +1359,7 @@ namespace SpertroApp
                                             }
                                         }
                                         //------------------------------------------------------------------
-                                        Laser_Set = Math_Methods.SingleLaser_FindPeak_And_Gaussian(isCreatDictionary, Laser_Set, IntensityL1, Wavelength, Convert.ToDouble(textBox12.Text), Convert.ToDouble(textBox13.Text), Convert.ToDouble(textBox14.Text));
+                                        Laser_Set = Math_Methods.SingleLaser_FindPeak_And_Gaussian(L_FWHM,isCreatDictionary, Laser_Set, IntensityL1, Wavelength, Convert.ToDouble(textBox12.Text), Convert.ToDouble(textBox13.Text), Convert.ToDouble(textBox14.Text));
                                         isCreatDictionary = false;
                                         Laser++;
                                         gamma_number = 100;
@@ -1365,7 +1367,9 @@ namespace SpertroApp
 
                                         break;
                                     case 2:
+                                        Process_Now = "雷射2勞倫茲擬合與波峰偵測";
                                         //----------------------------------------------------------------
+                                        double L2_FWHM;
                                         for (int i = 0; i < 50; i++)
                                         {
                                             avg += Pure_Intensity[i];
@@ -1398,7 +1402,7 @@ namespace SpertroApp
                                             p_++;
                                         }
 
-                                        L_after_Lorentz = Math_Methods.LorentzanFit(L_for_Lorentz, L_pixel_for_Lorentz);
+                                        L_after_Lorentz = Math_Methods.LorentzanFit(L_for_Lorentz, L_pixel_for_Lorentz,out L2_FWHM);
 
                                         for (int i = 0; i < Pure_Intensity.Count; i++)
                                         {
@@ -1413,13 +1417,14 @@ namespace SpertroApp
                                             }
                                         }
                                         //------------------------------------------------------------------
-                                        Laser_Set = Math_Methods.SingleLaser_FindPeak_And_Gaussian(isCreatDictionary, Laser_Set, IntensityL2, Wavelength, Convert.ToDouble(textBox12.Text), Convert.ToDouble(textBox13.Text), Convert.ToDouble(textBox14.Text));
+                                        Laser_Set = Math_Methods.SingleLaser_FindPeak_And_Gaussian(L2_FWHM,isCreatDictionary, Laser_Set, IntensityL2, Wavelength, Convert.ToDouble(textBox12.Text), Convert.ToDouble(textBox13.Text), Convert.ToDouble(textBox14.Text));
                                         isCreatDictionary = false;
                                         Laser++;
                                         gamma_number = 100;
                                         iTask = 600;
                                         break;
                                     case 3:
+                                        Process_Now = "雷射3勞倫茲擬合與波峰偵測";
                                         //----------------------------------------------------------------
                                         for (int i = 0; i < 50; i++)
                                         {
@@ -1427,6 +1432,7 @@ namespace SpertroApp
                                         }
                                         avg = avg / 50;
                                         Max_Index = Pure_Intensity.IndexOf(Pure_Intensity.Max());
+                                        double L3_FWHM;
                                         while (end == false)
                                         {
                                             if (Pure_Intensity[Max_Index + f] < avg+ thresold_k && isend1 == false)
@@ -1453,7 +1459,7 @@ namespace SpertroApp
                                             p_++;
                                         }
 
-                                        L_after_Lorentz = Math_Methods.LorentzanFit(L_for_Lorentz, L_pixel_for_Lorentz);
+                                        L_after_Lorentz = Math_Methods.LorentzanFit(L_for_Lorentz, L_pixel_for_Lorentz,out L3_FWHM);
 
                                         for (int i = 0; i < Pure_Intensity.Count; i++)
                                         {
@@ -1468,13 +1474,14 @@ namespace SpertroApp
                                             }
                                         }
                                         //------------------------------------------------------------------
-                                        Laser_Set = Math_Methods.SingleLaser_FindPeak_And_Gaussian(isCreatDictionary, Laser_Set, IntensityL3, Wavelength, Convert.ToDouble(textBox12.Text), Convert.ToDouble(textBox13.Text), Convert.ToDouble(textBox14.Text));
+                                        Laser_Set = Math_Methods.SingleLaser_FindPeak_And_Gaussian(L3_FWHM,isCreatDictionary, Laser_Set, IntensityL3, Wavelength, Convert.ToDouble(textBox12.Text), Convert.ToDouble(textBox13.Text), Convert.ToDouble(textBox14.Text));
                                         isCreatDictionary = false;
                                         Laser++;
                                         gamma_number = 100;
                                         iTask = 600;
                                         break;
                                     case 5:
+                                        Process_Now = "雷射5勞倫茲擬合與波峰偵測";
                                         //----------------------------------------------------------------
                                         for (int i = 0; i < 50; i++)
                                         {
@@ -1482,6 +1489,7 @@ namespace SpertroApp
                                         }
                                         avg = avg / 50;
                                         Max_Index = Pure_Intensity.IndexOf(Pure_Intensity.Max());
+                                        double L5_FWHM;
                                         while (end == false)
                                         {
                                             if (Pure_Intensity[Max_Index + f] < avg+ thresold_k && isend1 == false)
@@ -1508,7 +1516,7 @@ namespace SpertroApp
                                             p_++;
                                         }
 
-                                        L_after_Lorentz = Math_Methods.LorentzanFit(L_for_Lorentz, L_pixel_for_Lorentz);
+                                        L_after_Lorentz = Math_Methods.LorentzanFit(L_for_Lorentz, L_pixel_for_Lorentz,out L5_FWHM);
 
                                         for (int i = 0; i < Pure_Intensity.Count; i++)
                                         {
@@ -1523,13 +1531,14 @@ namespace SpertroApp
                                             }
                                         }
                                         //------------------------------------------------------------------
-                                        Laser_Set = Math_Methods.SingleLaser_FindPeak_And_Gaussian(isCreatDictionary, Laser_Set, IntensityL5, Wavelength, Convert.ToDouble(textBox12.Text), Convert.ToDouble(textBox13.Text), Convert.ToDouble(textBox14.Text));
+                                        Laser_Set = Math_Methods.SingleLaser_FindPeak_And_Gaussian(L5_FWHM,isCreatDictionary, Laser_Set, IntensityL5, Wavelength, Convert.ToDouble(textBox12.Text), Convert.ToDouble(textBox13.Text), Convert.ToDouble(textBox14.Text));
                                         isCreatDictionary = false;
                                         Laser++;
                                         gamma_number = 100;
                                         iTask = 600;
                                         break;
                                     case 6:
+                                        Process_Now = "雷射6勞倫茲擬合與波峰偵測";
                                         //----------------------------------------------------------------
                                         for (int i = 0; i < 50; i++)
                                         {
@@ -1537,6 +1546,7 @@ namespace SpertroApp
                                         }
                                         avg = avg / 50;
                                         Max_Index = Pure_Intensity.IndexOf(Pure_Intensity.Max());
+                                        double L6_FWHM;
                                         while (end == false)
                                         {
                                             if (Pure_Intensity[Max_Index + f] < avg+ thresold_k && isend1 == false)
@@ -1563,7 +1573,7 @@ namespace SpertroApp
                                             p_++;
                                         }
 
-                                        L_after_Lorentz = Math_Methods.LorentzanFit(L_for_Lorentz, L_pixel_for_Lorentz);
+                                        L_after_Lorentz = Math_Methods.LorentzanFit(L_for_Lorentz, L_pixel_for_Lorentz,out L6_FWHM);
 
                                         for (int i = 0; i < Pure_Intensity.Count; i++)
                                         {
@@ -1578,13 +1588,14 @@ namespace SpertroApp
                                             }
                                         }
                                         //------------------------------------------------------------------
-                                        Laser_Set = Math_Methods.SingleLaser_FindPeak_And_Gaussian(isCreatDictionary, Laser_Set, IntensityL6, Wavelength, Convert.ToDouble(textBox12.Text), Convert.ToDouble(textBox13.Text), Convert.ToDouble(textBox14.Text));
+                                        Laser_Set = Math_Methods.SingleLaser_FindPeak_And_Gaussian(L6_FWHM,isCreatDictionary, Laser_Set, IntensityL6, Wavelength, Convert.ToDouble(textBox12.Text), Convert.ToDouble(textBox13.Text), Convert.ToDouble(textBox14.Text));
                                         isCreatDictionary = false;
                                         Laser++;
                                         gamma_number = 100;
                                         iTask = 600;
                                         break;
                                     case 7:
+                                        Process_Now = "雷射7勞倫茲擬合與波峰偵測";
                                         //----------------------------------------------------------------
                                         for (int i = 0; i < 50; i++)
                                         {
@@ -1592,6 +1603,7 @@ namespace SpertroApp
                                         }
                                         avg = avg / 50;
                                         Max_Index = Pure_Intensity.IndexOf(Pure_Intensity.Max());
+                                        double L7_FWHM;
                                         while (end == false)
                                         {
                                             if (Pure_Intensity[Max_Index + f] < avg+ thresold_k && isend1 == false)
@@ -1618,7 +1630,7 @@ namespace SpertroApp
                                             p_++;
                                         }
 
-                                        L_after_Lorentz = Math_Methods.LorentzanFit(L_for_Lorentz, L_pixel_for_Lorentz);
+                                        L_after_Lorentz = Math_Methods.LorentzanFit(L_for_Lorentz, L_pixel_for_Lorentz,out L7_FWHM);
 
                                         for (int i = 0; i < Pure_Intensity.Count; i++)
                                         {
@@ -1633,22 +1645,24 @@ namespace SpertroApp
                                             }
                                         }
                                         //------------------------------------------------------------------
-                                        Laser_Set = Math_Methods.SingleLaser_FindPeak_And_Gaussian(isCreatDictionary, Laser_Set, IntensityL7, Wavelength, Convert.ToDouble(textBox12.Text), Convert.ToDouble(textBox13.Text), Convert.ToDouble(textBox14.Text));
+                                        Laser_Set = Math_Methods.SingleLaser_FindPeak_And_Gaussian(L7_FWHM,isCreatDictionary, Laser_Set, IntensityL7, Wavelength, Convert.ToDouble(textBox12.Text), Convert.ToDouble(textBox13.Text), Convert.ToDouble(textBox14.Text));
                                         isCreatDictionary = false;
                                         Laser++;
                                         gamma_number = 100;
                                         iTask = 600;
                                         break;
                                     case 8:
+                                        Process_Now = "雷射8勞倫茲擬合與波峰偵測";
                                         int max_index = Pure_Intensity.IndexOf(Pure_Intensity.Max());
                                         int lengh = Pure_Intensity.Count - Pure_Intensity.IndexOf(Pure_Intensity.Max());
+                                        double L8_FWHM;
                                         for (int i = max_index - lengh; i < Pure_Intensity.Count; i++)
                                         {
                                             L_for_Lorentz.Add(Pure_Intensity[i]);
                                             L_pixel_for_Lorentz.Add(p_);
                                             p_++;
                                         }
-                                        L_after_Lorentz = Math_Methods.LorentzanFit(L_for_Lorentz, L_pixel_for_Lorentz);
+                                        L_after_Lorentz = Math_Methods.LorentzanFit(L_for_Lorentz, L_pixel_for_Lorentz,out L8_FWHM);
                                         //Pure_Intensity.RemoveRange(max_index - lengh, 2 * lengh);
                                         for (int i = 0; i < Pure_Intensity.Count; i++)
                                         {
@@ -1660,7 +1674,7 @@ namespace SpertroApp
                                                 start++;
                                             }
                                         }
-                                        Laser_Set = Math_Methods.SingleLaser_FindPeak_And_Gaussian(isCreatDictionary, Laser_Set, IntensityL8, Wavelength, Convert.ToDouble(textBox12.Text), Convert.ToDouble(textBox13.Text), Convert.ToDouble(textBox14.Text));
+                                        Laser_Set = Math_Methods.SingleLaser_FindPeak_And_Gaussian(L8_FWHM,isCreatDictionary, Laser_Set, IntensityL8, Wavelength, Convert.ToDouble(textBox12.Text), Convert.ToDouble(textBox13.Text), Convert.ToDouble(textBox14.Text));
                                         isCreatDictionary = false;
                                         Laser++;
                                         iTask = 785;
@@ -1669,6 +1683,7 @@ namespace SpertroApp
                             }
                             else
                             {
+                                Process_Now = "COMEBINE 波長校正擬合";
                                 Gaus_FWHL_Coef_Set_1 = Math_Methods.SingleLaser_Poly_And_Plot(this_SC_ID,Laser_Set, Wavelength,IntensityL1,
                                     IntensityL2, IntensityL3, IntensityL5, IntensityL6, IntensityL7, IntensityL8);
                                 Thread.Sleep(500);
@@ -1702,7 +1717,7 @@ namespace SpertroApp
                         }
                         else
                         {
-                           
+                            Process_Now = "波峰偵測";
                             Gaus_FWHL_Coef_Set_1 = Math_Methods.FindPeak_And_Gaussian(Pure_Intensity, Wavelength, Convert.ToDouble(textBox12.Text), Convert.ToDouble(textBox13.Text), Convert.ToDouble(textBox14.Text));
                             iTask = 790;
                         }
@@ -1716,6 +1731,7 @@ namespace SpertroApp
                         List<string> dark_ = new List<string>();
                         if (isHg_Ar_PassNgTest)
                         {
+                            Process_Now = "汞氬燈 PASS NG 測試";
                             Hg_Ar_PassNg = Math_Methods.Hg_Ar_PassNgTest(RealTime_Original_Intensity, this_SC_ID);
                             iTask = 1200;
                         }
@@ -1728,11 +1744,25 @@ namespace SpertroApp
                             }
                             if (isHg_Ar)
                             {
+                                Process_Now = "汞氬燈 RAW DATA 存檔";
                                 File.WriteAllLines(@"校正結果\" + this_SC_ID + @"\" + "RawData" + @"\" + this_SC_ID + "_Hg_Ar_" + "Intensity_" + DateTime.Now.ToString("yyyy-MM-dd-HH-mm") + "_.txt", original_.ToArray());
                                 File.WriteAllLines(@"校正結果\" + this_SC_ID + @"\" + "RawData" + @"\" + this_SC_ID + "_Dark_of_Hg_Ar_" + "Intensity_" + DateTime.Now.ToString("yyyy-MM-dd-HH-mm") + "_.txt", dark_.ToArray());
                             }
                             else if (onlyWhite)
                             {
+                                Process_Now = "白光 RAW DATA 存檔";
+                                if (isWhite_PassNgTest)
+                                {
+                                    Process_Now = "白光 PASS NG 測試與存RAW DATA";
+                                    try
+                                    {
+                                        White_PassNg = Math_Methods.White_PassNgTest(RealTime_Original_Intensity, this_SC_ID);
+                                    }
+                                    catch
+                                    {
+                                        MessageBox.Show("PassNg測試失敗 請按START重新量測");
+                                    }
+                                }
                                 File.WriteAllLines(@"校正結果\" + this_SC_ID + @"\" + "RawData" + @"\" + this_SC_ID + "_While_" + "Intensity_" + DateTime.Now.ToString("yyyy-MM-dd-HH-mm") + "_.txt", original_.ToArray());
                                 File.WriteAllLines(@"校正結果\" + this_SC_ID + @"\" + "RawData" + @"\" + this_SC_ID + "_Dark_of_White_" + "Intensity_" + DateTime.Now.ToString("yyyy-MM-dd-HH-mm") + "_.txt", dark_.ToArray());
                                 iTask = 1200;
@@ -1825,7 +1855,7 @@ namespace SpertroApp
                         break;
 
                     case 1001: //求 Δλm(ΔλFWHM)
-
+                        Process_Now = "計算Δλm(ΔλFWHM)";
                         wFWHM.Clear();
                         wFWHM = Math_Methods.getLamdaFWHM(pFWHM, Poly_Coefs, pixel_M);
                         if (isHg_Ar)
@@ -1834,7 +1864,7 @@ namespace SpertroApp
                         break;
 
                     case 1010:  //Δλsc
-
+                        Process_Now = "計算雷射Δλsc";
                         LambdaSC.Clear();
                         int k = 0;
                         int n = 0;
@@ -1952,7 +1982,7 @@ namespace SpertroApp
 
 
                     case 1011: //Δλsc ( for hg )
-                        
+                        Process_Now = "計算汞氬燈Δλsc";
                         LambdaSC.Clear();
                         Poly_Coefs_of_Hg_Ar.Clear();
                         Poly_Coefs_of_Hg_Ar = Poly_Coefs;
@@ -2013,7 +2043,7 @@ namespace SpertroApp
 
                                     case 4:
 
-                                        if (HgW5_CK.Checked)
+                                        if (HgW5_CK.Checked && Hg5WFHM)
                                         {
                                             LambdaSC.Add(Math.Sqrt(Math.Pow(wFWHM[p - r], 2) - Math.Pow(Convert.ToDouble(HG5.Text), 2)));
                                             //deltaL.Add(Convert.ToDouble(HG5.Text));
@@ -2025,7 +2055,7 @@ namespace SpertroApp
 
                                     case 5:
 
-                                        if (HgW6_CK.Checked)
+                                        if (HgW6_CK.Checked && Hg6WFHM)
                                         {
                                             LambdaSC.Add(Math.Sqrt(Math.Pow(wFWHM[p - r], 2) - Math.Pow(Convert.ToDouble(HG6.Text), 2)));
                                             //deltaL.Add(Convert.ToDouble(HG6.Text));
@@ -2046,6 +2076,7 @@ namespace SpertroApp
                             break;
 
                     case 1012: //將沒勾FWHM的波長找到的峰值所在的PIXEL也去掉
+                        Process_Now = "去除不參與計算之波峰";
                         try
                         {
                             if (isHg_Ar == false)
@@ -2120,6 +2151,12 @@ namespace SpertroApp
                             }
                             else 
                             {
+                                bool isPeak_5_beFinded = true;
+                                if (pixel_M.Count < 5)
+                                { isPeak_5_beFinded = false; }
+                                bool isPeak_6_beFinded = true;
+                                if (pixel_M.Count < 6)
+                                { isPeak_6_beFinded = false; }
                                 RemoveIndex.Clear();
                                 pixel_M_save.Clear();
                                 int d = 0;
@@ -2155,6 +2192,22 @@ namespace SpertroApp
                                     RemoveIndex.Add(i);
                                     d++;
                                 }
+                                if (HgW5_CK.Checked && Hg5WFHM == false && isPeak_5_beFinded)
+                                {
+                                    int i = Wavelength.IndexOf(Convert.ToDouble(HG_w5.Text));
+                                    pixel_M_save.Add(pixel_M[i - d]);
+                                    pixel_M.RemoveAt(i - d);
+                                    RemoveIndex.Add(i);
+                                    d++;
+                                }
+                                if (HgW6_CK.Checked && Hg6WFHM == false && isPeak_6_beFinded)
+                                {
+                                    int i = Wavelength.IndexOf(Convert.ToDouble(HG_w6.Text));
+                                    pixel_M_save.Add(pixel_M[i - d]);
+                                    pixel_M.RemoveAt(i - d);
+                                    RemoveIndex.Add(i);
+                                    d++;
+                                }
                             }
                         }
                         catch
@@ -2165,6 +2218,7 @@ namespace SpertroApp
                         break;
 
                     case 1013: //求ΔPsc
+                        Process_Now = "計算ΔPsc";
                         iTask = 1014;
                         try
                         {
@@ -2184,7 +2238,7 @@ namespace SpertroApp
                         break;
 
                     case 1014:
-
+                        Process_Now = "ΔλRMS,ΔXRMS,Δλstd,ΔXstd,λcal,SNR DIFF,DIFF_rms,Stray_light 計算";
                         Lamda_cal.Clear();
                         DIFF.Clear();
                         double x = 0;
@@ -2197,27 +2251,6 @@ namespace SpertroApp
                         //-----------------------------
                         double diff_rms = 0;
 
-                       /* if (isHg_Ar)
-                        {
-                            //λcal
-                            for (int i = 0; i < pixel_M.Count; i++)
-                            {
-                                cal = Poly_Coefs[3] * Math.Pow(pixel_M[i], 3) + Poly_Coefs[2] * Math.Pow(pixel_M[i], 2) + Poly_Coefs[1] * pixel_M[i] + Poly_Coefs[0];
-                                Lamda_cal.Add(cal);
-                            }
-                            //DIFF
-                            for (int i = 0; i < Wavelength.Count; i++)
-                            {
-                                DIFF.Add(Lamda_cal[i] - Wavelength[i]);
-                            }
-                            //DIFF_rms 
-                            for (int i = 0; i < DIFF.Count; i++)
-                            {
-                                diff_rms += Math.Pow(DIFF[i], 2);
-                            }
-                            DIFF_rms = Math.Sqrt(diff_rms / DIFF.Count);
-                        }*/
-                       
 
                             for (int i = 0; i < LambdaSC.Count; i++)
                             {
@@ -2285,6 +2318,7 @@ namespace SpertroApp
                             report = "λ , ΔλL(nm)" + "\t" + "λcal"+ "\t" +"Diff"+ "\t" +"Diff_rms"+ "\t" + "Pixel" + "\t" + "ΔP" + "\t" + "Δxm" + "\t" + "Δλm" + "\t" + "Δλsc" + "\t" + "ΔPsc" + "\t" + "ΔXsc" + "  " + "Δλrms" + "  " + "  " + "Δλstd" + "  " + "  " + "Δλstd%" + "  " + "  " + "ΔXrms" + "  " + "  " + "ΔXstd" + "  " + "  " + "ΔXstd%" ;
                             if (isHg_Ar)
                             {
+                                Process_Now = "產生汞氬燈報表";
                                 report += "\r\n" + "-----------------------------------------------------------------------------------------HG-----------------------------------------------------------------------------------------------------------------------\n";
                                 for (int i = 0; i < Wavelength.Count; i++)
                                 {
@@ -2310,6 +2344,7 @@ namespace SpertroApp
                             }
                             else
                             {
+                                Process_Now = "產生雷射報表";
                                 report += "\r\n" + "-----------------------------------------------------------------------------------------Laser--------------------------------------------------------------------------------------------------------------------\n";
                                 for (int i = 0; i < Wavelength.Count; i++)
                                 {
@@ -2347,6 +2382,7 @@ namespace SpertroApp
                             report = "λ , ΔλL(nm)" + "\t" + "λcal" + "\t" + "Diff" + "\t" + "Diff_rms" + "\t" + "Pixel" + "\t" + "ΔP" + "\t" + "Δxm" + "\t" + "Δλm" + "\t" + "Δλsc" + "\t" + "ΔPsc" + "\t" + "ΔXsc" + "  " + "Δλrms" + "  " + "  " + "Δλstd" + "  " + "  " + "Δλstd%" + "  " + "  " + "ΔXrms" + "  " + "  " + "ΔXstd" + "  " + "  " + "ΔXstd%";
                             if (isHg_Ar)
                             {
+                                Process_Now = "產生汞氬燈報表";
                                 report += "\r\n" + "-----------------------------------------------------------------------------------------HG-----------------------------------------------------------------------------------------------------------------------------------------------------------\n";
                                 for (int i = 0; i < Wavelength.Count; i++)
                                 {
@@ -2372,6 +2408,7 @@ namespace SpertroApp
                             }
                             else
                             {
+                                Process_Now = "產生雷射報表";
                                 report += "\r\n" + "-----------------------------------------------------------------------------------------Laser------------------------------------------------------------------------------------------------------------------------------------\n";
                                 for (int i = 0; i < Wavelength.Count; i++)
                                 {
@@ -2422,7 +2459,6 @@ namespace SpertroApp
                             Report report = new Report(this);
                             report.ShowDialog();
                             report_Memory = "";
-                            isend = true;
                         }
                         
                         break;
@@ -2439,6 +2475,22 @@ namespace SpertroApp
                     case 1200://
                         if (onlyWhite) 
                         {
+                            if (isWhite_PassNgTest)
+                            {
+                                if (White_PassNg[1] < Convert.ToDouble(LedBlueFWHM_threshold.Text) && White_PassNg[2] < Convert.ToDouble(LedYellowFWHM_threshold.Text))
+                                {
+                                    Process_Now = "白光 Pass";
+                                    isWhitePass = true;
+                                }
+                                else
+                                {
+                                    Process_Now = "白光 Ng";
+                                    isWhiteNg = true;
+                                }
+                                Thread.Sleep(1500);
+                                CaptureWindow("Result_AfterLorentz And Gaussian Fit");//截圖
+                                isWhite_PassNgTest = false;
+                            }
                             final_dg = textBox9.Text;
                             final_gamma = textBox10.Text;
                             final_back = textBox11.Text;
@@ -2449,9 +2501,11 @@ namespace SpertroApp
                         {
                             if (Hg_Ar_PassNg[1] < Convert.ToDouble(BaseLineRMSE_threshold.Text) && Hg_Ar_PassNg[2] < Convert.ToDouble(FWHM_RMSE_threshold.Text))
                             {
+                                Process_Now = "汞氬燈 Pass";
                                 isPass = true; }
                             else
                             {
+                                Process_Now = "汞氬燈 Ng";
                                 isNg = true; }
                             Thread.Sleep(1500);
                             CaptureWindow("Result_AfterLorentz And addBaseLine");//截圖
@@ -2460,6 +2514,15 @@ namespace SpertroApp
                         Pause = true;
 
                         iTask = 1300;
+                        break;
+
+                    case 1300:
+                        if (isend == false)
+                        {
+                            Process_Now = "量測結束";
+                            isend = true;
+                        }
+                        iTask = 1400;
                         break;
 
                 }
@@ -3903,7 +3966,7 @@ namespace SpertroApp
             Directory.CreateDirectory(@"校正結果\" + this_SC_ID + @"\" + "Image" + @"\");
             Directory.CreateDirectory(@"校正結果\" + this_SC_ID + @"\" + "RawData" + @"\");
             Directory.CreateDirectory(@"校正結果\" + this_SC_ID + @"\" + "Spectrum_Figure" + @"\");
-            if (radioButton2.Checked)
+            if (radioButton2.Checked)//單雷射
             {
                 isFirtCacular++;
                 Pause = false;
@@ -3965,25 +4028,29 @@ namespace SpertroApp
                     gamma_number = 100;
                 }
             }
-            else if (radioButton1.Checked)
+            else if (radioButton1.Checked)//汞氬燈
             {
+                Dark_Intensity.Clear();
+                isFirtCacular = 1;
                 isGetROI = false;
-                textBox13.Text = "20";
+                isGet_Ar = false;
+                Original_Intensity.Clear();
+                Ar_Intensity.Clear();
+                textBox13.Text = "10";
                 Pause = false;
                 iTask = 615;
                 isHg_Ar = true;
-                isFirtCacular++;
                 btn_Start1.Enabled = true;
                 btn_Start2.Enabled = true;
                 Hg2WFHM = true;
                 Hg3WFHM = true;
                 checkBox6.Checked = true;
-                gamma_number = 300;  //gamma從300開始扣
+                gamma_number = 300;
                 Hg_Ar.Clear();
                 Hg_Pixel.Clear();
                 Hg_Intensity_M.Clear();
             }
-            else if (radioButton3.Checked)
+            else if (radioButton3.Checked)//白光LED
             {
                 isGetROI = false;
                 Pause = false;
@@ -4917,7 +4984,7 @@ namespace SpertroApp
             Directory.CreateDirectory(@"校正結果\" + this_SC_ID + @"\" + "Image" + @"\");
             Directory.CreateDirectory(@"校正結果\" + this_SC_ID + @"\" + "RawData" + @"\");
             Directory.CreateDirectory(@"校正結果\" + this_SC_ID + @"\" + "Spectrum_Figure" + @"\");
-
+            Process_Now = "汞氬燈PassNg量測開始";
             isGetROI = false;
             textBox13.Text = "20";
             Pause = false;
@@ -4933,17 +5000,33 @@ namespace SpertroApp
             Hg_Pixel.Clear();
             Hg_Intensity_M.Clear();
             isHg_Ar_PassNgTest = true;
+            isWhite_PassNgTest = false;
         }
 
-        private void groupBox7_Enter(object sender, EventArgs e)
+        private void button23_Click_1(object sender, EventArgs e)
+        {
+            Process_Now = "白光PassNg量測開始";
+            Directory.CreateDirectory(@"校正結果\" + this_SC_ID + @"\" + "Jason" + @"\");
+            Directory.CreateDirectory(@"校正結果\" + this_SC_ID + @"\" + "Result" + @"\");
+            Directory.CreateDirectory(@"校正結果\" + this_SC_ID + @"\" + "Image" + @"\");
+            Directory.CreateDirectory(@"校正結果\" + this_SC_ID + @"\" + "RawData" + @"\");
+            Directory.CreateDirectory(@"校正結果\" + this_SC_ID + @"\" + "Spectrum_Figure" + @"\");
+            isHg_Ar_PassNgTest = false;
+            isWhite_PassNgTest = true;
+            isGetROI = false;
+            Pause = false;
+            iTask = 625;
+            onlyWhite = true;
+            back_number = 0;
+            checkBox8.Checked = true;
+            gamma_number = 100;
+        }
+
+        private void button25_Click(object sender, EventArgs e)
         {
 
         }
 
-        private void chart_original_Click(object sender, EventArgs e)
-        {
-
-        }
         #endregion
 
         #region 視窗截圖

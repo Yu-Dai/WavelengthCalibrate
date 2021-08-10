@@ -21,12 +21,27 @@ using Comebine_Poly_And_Plot;
 using lorentzfit;
 using System.IO;
 using hg_data_Separate;
+using white_lorentz_and_gaussian;
 
 namespace SpectroChipApp
 {
 
     class Math_Methods
     {
+        public static List<double> White_PassNgTest(List<double> WhiteIntensity, string SC_ID)
+        {
+            List<double> Result = new List<double>();
+            White_Pass_Ng_Test  White_PassNgTest = new White_Pass_Ng_Test();
+            MWArray WhiteIntensity_M = (MWNumericArray)WhiteIntensity.ToArray();
+            MWCharArray ID = (MWCharArray)SC_ID;
+            MWArray Result_Parameter_M = White_PassNgTest.white_lorentz_and_gaussian(WhiteIntensity_M, ID);
+            double[,] Result_Parameter = (double[,])((MWNumericArray)Result_Parameter_M).ToArray(MWArrayComponent.Real);
+            for (int i = 0; i < Result_Parameter.Length; i++)
+            {
+                Result.Add(Result_Parameter[0, i]);
+            }
+            return Result;
+        }
         public static List<double> Hg_Ar_PassNgTest(List<double> HgArIntensity,string SC_ID)
         {
             List<double> Result = new List<double>();
@@ -805,8 +820,9 @@ namespace SpectroChipApp
             MWArray IntensitySG_M = (MWNumericArray)Intensity.ToArray();
             MWArray length = (MWNumericArray)Intensity.Count;
             MWArray SlopeTreshold = (MWNumericArray)SlopeTh;
-            MWArray AmpTreshold = (MWNumericArray)AmpTh;
-            MWArray SG_WindowSize = (MWNumericArray)SgWindowSize;
+            MWArray AmpTreshold = (MWNumericArray)(AmpTh);
+            //MWArray SG_WindowSize = (MWNumericArray)SgWindowSize;
+            MWArray SG_WindowSize = (MWNumericArray)7;
             MWArray Peak_Group = (MWNumericArray)5;
             MWArray GaussianType = (MWNumericArray)3;
 
@@ -835,6 +851,7 @@ namespace SpectroChipApp
                     }
                 }
             }
+
             Pixel.RemoveRange(4, Pixel.Count - 4);
             intensity.RemoveRange(4, intensity.Count - 4);
             FWHL.RemoveRange(4, FWHL.Count - 4);
@@ -873,7 +890,7 @@ namespace SpectroChipApp
             //return oImage;
             return oBitmap;
         }
-        public static Dictionary<string, List<double>> SingleLaser_FindPeak_And_Gaussian(bool isCreatDictionary, Dictionary<string, List<double>> input,List<double> SG_Intensity, List<double> wavelength, double SlopeTh, double AmpTh, double SgWindowSize)
+        public static Dictionary<string, List<double>> SingleLaser_FindPeak_And_Gaussian(double Lorentz_Fwhm,bool isCreatDictionary, Dictionary<string, List<double>> input,List<double> SG_Intensity, List<double> wavelength, double SlopeTh, double AmpTh, double SgWindowSize)
         {
             FindPeaks fp = new FindPeaks();
             MWArray IntensitySG_M = (MWNumericArray)SG_Intensity.ToArray();
@@ -890,7 +907,7 @@ namespace SpectroChipApp
             List<double> Pixel = new List<double>();
             List<double> intensity = new List<double>();
             List<double> FWHL = new List<double>();
-
+            FWHL.Add(Lorentz_Fwhm);
             for (int j = 1; j < Peak.GetUpperBound(1) + 1; j++)
             {
                 for (int i = 0; i < Peak.GetUpperBound(0) + 1; i++)
@@ -905,7 +922,7 @@ namespace SpectroChipApp
                     }
                     if (j == 3)
                     {
-                        FWHL.Add(Peak[i, j]);
+                       // FWHL.Add(Peak[i, j]);
                     }
                 }
             }
@@ -922,7 +939,7 @@ namespace SpectroChipApp
             }
             else
             {
-                input["FWHL"].Add(FWHL[0]);
+                input["FWHL"].Add(Lorentz_Fwhm);
                 input["pixel_M"].Add(Pixel[0]);
                 input["intensity_M"].Add(intensity[0]);
                 fp.Dispose();
@@ -937,10 +954,10 @@ namespace SpectroChipApp
 
             MWArray Pixel_M = (MWNumericArray)FindPeak_Coef_Set["pixel_M"].ToArray();
             MWArray intensity_M = (MWNumericArray)FindPeak_Coef_Set["intensity_M"].ToArray();
-            MWArray FWHL_M = (MWNumericArray)FindPeak_Coef_Set["FWHL"].ToArray();
+            //MWArray FWHL_M = (MWNumericArray)FindPeak_Coef_Set["FWHL"].ToArray();
             MWArray wavelength_M = (MWNumericArray)wavelength.ToArray();
             MWArray order_M = (MWNumericArray)3;
-            List<double> FWHL_G = MWArray2Array2(FWHL_M, 8).ToList();
+            //List<double> FWHL_G = MWArray2Array2(FWHL_M, 8).ToList();
             SingleLaser_Poly_Plot s_p_t = new SingleLaser_Poly_Plot();
             MWArray I_L1 = (MWNumericArray)Intensity_L1.ToArray();
             MWArray I_L2 = (MWNumericArray)Intensity_L2.ToArray();
@@ -956,7 +973,7 @@ namespace SpectroChipApp
             List<double> coef = MWArray2Array(Fit).ToList();
             Gaus_FWHL_Coef_Set.Add("coef", coef);
             Gaus_FWHL_Coef_Set.Add("intensity_M", FindPeak_Coef_Set["intensity_M"]);
-            Gaus_FWHL_Coef_Set.Add("FWHL", FWHL_G);
+            Gaus_FWHL_Coef_Set.Add("FWHL", FindPeak_Coef_Set["FWHL"]);
             Gaus_FWHL_Coef_Set.Add("pixel_M", FindPeak_Coef_Set["pixel_M"]);
 
             return Gaus_FWHL_Coef_Set;
@@ -1005,7 +1022,7 @@ namespace SpectroChipApp
         MWArray IntensitySG_M = (MWNumericArray)Ar_Intensity.ToArray();
         MWArray length = (MWNumericArray)Ar_Intensity.Count;
         MWArray SlopeTreshold = (MWNumericArray)SlopeTh;
-        MWArray AmpTreshold = (MWNumericArray)AmpTh;
+        MWArray AmpTreshold = (MWNumericArray)(AmpTh-5);
         MWArray SG_WindowSize = (MWNumericArray)SgWindowSize;
         MWArray Peak_Group = (MWNumericArray)5;
         MWArray GaussianType = (MWNumericArray)3;
@@ -1015,7 +1032,7 @@ namespace SpectroChipApp
         double[,] Peak;
         Peak = (double[,])((MWNumericArray)yout_fp).ToArray(MWArrayComponent.Real);
 
-        Pure_Intensity.RemoveRange(ReplacePoint, Pure_Intensity.Count - ReplacePoint);
+         Pure_Intensity.RemoveRange(ReplacePoint, Pure_Intensity.Count - ReplacePoint);
         for (int t = ReplacePoint; t < Ar_Intensity.Count; t++)
         {
             Pure_Intensity.Add(Ar_Intensity[t]);
@@ -1122,10 +1139,11 @@ namespace SpectroChipApp
 
 
         }
-        public static List<double> LorentzanFit(List<double> Data, List<int> pixel)
+        public static List<double> LorentzanFit(List<double> Data, List<int> pixel, out double fwhm)
         {
             string[] input = new string[] { null, null, "3C" };
             double[] ans = new double[1280];
+            double[] parameter = new double[4];
             List<double> output = new List<double>();
             MWArray Data_M = (MWNumericArray)Data.ToArray();
             MWArray Pixel_M = (MWNumericArray)pixel.ToArray();
@@ -1133,8 +1151,10 @@ namespace SpectroChipApp
 
             Lorentzfit lorentzfit = new Lorentzfit();
             // MWArray a =(MWNumericArray)
-            MWArray[] a = lorentzfit.lorentzfit(1, Pixel_M, Data_M);
+            MWArray[] a = lorentzfit.lorentzfit(4, Pixel_M, Data_M);
             ans = (double[])((MWNumericArray)a[0]).ToVector(MWArrayComponent.Real);
+            parameter = (double[])((MWNumericArray)a[1]).ToVector(MWArrayComponent.Real);
+            fwhm = Math.Sqrt(parameter[2]) * 2;
             for (int i = 0; i < ans.Length; i++)
             {
                 output.Add(ans[i]);

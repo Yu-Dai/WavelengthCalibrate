@@ -1,0 +1,7 @@
+Dark_Intensity.clear();
+isFirtCacular = 1;
+isGetROI = false;
+isGet_Ar=false;
+gamma_number =100;
+Original_Intensity.clear();
+Ar_Intensity.clear();

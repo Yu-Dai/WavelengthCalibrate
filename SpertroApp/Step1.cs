@@ -33,7 +33,7 @@ namespace SpertroApp
             int Pixel_x = 0;//正在被掃描的點
             int Pixel_y = 0;
             int sum_gray = 0;
-            int clip = 0; //被剪去的部分,進而加速,之後可設為外部設定380
+            int clip = 100; //被剪去的部分,進而加速,之後可設為外部設定380
             // int [] sum4eachROI=new int[];
             List<int> sum4eachROI = new List<int>();
 
