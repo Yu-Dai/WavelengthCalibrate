@@ -845,7 +845,6 @@ namespace SpertroApp
 
                                 iTask = 630;
                             }
-                            Task.Delay(1500);
                         }
                         else if (onlyWhite)
                         {
@@ -882,10 +881,11 @@ namespace SpertroApp
                             {
                                 Set_Gamma(gamma_number);
                             }
-                                                 
+
                             iTask = 630;
                         }
                         Original_Intensity = RealTime_Original_Intensity;
+                        Thread.Sleep(2000);
                         break;
                     case 626:
                         Thread.Sleep(1000);
@@ -952,7 +952,7 @@ namespace SpertroApp
                             //  Set_Dg_half();//-------------
                             iTask = 635;
                         }
-                        Thread.Sleep(1000);
+                        Thread.Sleep(2000);
                         break;
 
                     case 635:
@@ -1013,7 +1013,6 @@ namespace SpertroApp
                         }
                         Index_of_Max = 0;
                         isAutoScaling_FisrtStep_Complete = false;
-                        Thread.Sleep(1500);
                         break;
 
                     case 638:
