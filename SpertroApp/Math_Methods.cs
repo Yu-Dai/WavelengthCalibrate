@@ -866,6 +866,102 @@ namespace SpectroChipApp
 
         }
 
+        public static Dictionary<string, List<double>> Low_Hg_FindPeak_And_Gaussian(string SC_ID,List<double> Intensity, List<double> wavelength, double SlopeTh, double AmpTh, double SgWindowSize)
+        {
+            Dictionary<string, List<double>> Gaus_FWHL_Coef_Set = new Dictionary<string, List<double>>();
+            PF Poly = new PF();
+            FindPeaks fp = new FindPeaks();
+            plot pt = new plot();
+            Poly_Plot PAP = new Poly_Plot();
+
+            MWArray IntensitySG_M = (MWNumericArray)Intensity.ToArray();
+            MWArray length = (MWNumericArray)Intensity.Count;
+            MWArray SlopeTreshold = (MWNumericArray)SlopeTh;
+            MWArray AmpTreshold = (MWNumericArray)(AmpTh);
+            //MWArray SG_WindowSize = (MWNumericArray)SgWindowSize;
+            MWArray SG_WindowSize = (MWNumericArray)7;
+            MWArray Peak_Group = (MWNumericArray)5;
+            MWArray GaussianType = (MWNumericArray)3;
+
+            MWArray yout_fp = fp.autofindpeaks(length, IntensitySG_M, SlopeTreshold, AmpTreshold, SG_WindowSize, Peak_Group, GaussianType);
+            double[,] Peak;
+            Peak = (double[,])((MWNumericArray)yout_fp).ToArray(MWArrayComponent.Real);
+            List<double> Pixel = new List<double>();
+            List<double> intensity = new List<double>();
+            List<double> FWHL = new List<double>();
+
+            for (int j = 1; j < Peak.GetUpperBound(1) + 1; j++)
+            {
+                for (int i = 0; i < Peak.GetUpperBound(0) + 1; i++)
+                {
+                    if (j == 1)
+                    {
+                        Pixel.Add(Peak[i, j]);
+                    }
+                    if (j == 2)
+                    {
+                        intensity.Add(Peak[i, j]);
+                    }
+                    if (j == 3)
+                    {
+                        FWHL.Add(Peak[i, j]);
+                    }
+                }
+            }
+
+            Pixel.RemoveRange(4, Pixel.Count - 4);
+            intensity.RemoveRange(4, intensity.Count - 4);
+            FWHL.RemoveRange(4, FWHL.Count - 4);
+            MWArray FWHL_M = (MWNumericArray)FWHL.ToArray();
+            List<double> FWHL_G = MWArray2Array2(FWHL_M, 8).ToList();
+
+
+
+            MWArray Pixel_M = (MWNumericArray)Pixel.ToArray();
+            MWArray intensity_M = (MWNumericArray)intensity.ToArray();
+            MWArray wavelength_M = (MWNumericArray)wavelength.ToArray();
+            MWArray order_M = (MWNumericArray)3;
+            MWCharArray ID = (MWCharArray)SC_ID;
+            //pt.Plot(Pixel_M, intensity_M, IntensitySG_M);
+
+            if (Pixel.Count != wavelength.Count)
+            {
+                List<double> coef = new List<double>();
+                pt.Plot(Pixel_M, intensity_M, IntensitySG_M);
+                for (int i = 0; i < 4; i++)
+                { coef.Add(0); }
+                Gaus_FWHL_Coef_Set.Add("intensity_M", intensity);
+                Gaus_FWHL_Coef_Set.Add("coef", coef);
+                Gaus_FWHL_Coef_Set.Add("FWHL", FWHL_G);
+                Gaus_FWHL_Coef_Set.Add("wavelength_M", wavelength);
+                Gaus_FWHL_Coef_Set.Add("pixel_M", Pixel);
+                fp.Dispose();
+                return Gaus_FWHL_Coef_Set;
+            }
+            else
+            {
+                /*
+                MWArray Fit = Poly.PolyFit(Pixel_M, wavelength_M, order_M);
+                List<double> coef = MWArray2Array(Fit).ToList();
+                Gaus_FWHL_Coef_Set.Add("coef", coef);
+                Gaus_FWHL_Coef_Set.Add("FWHL", FWHL_G);
+                Gaus_FWHL_Coef_Set.Add("pixel_M", Pixel);
+                return Gaus_FWHL_Coef_Set;*/
+                MWArray Fit = PAP.Poly_And_Plot(Pixel_M, wavelength_M, order_M, Pixel_M, intensity_M, IntensitySG_M, ID);
+                List<double> coef = MWArray2Array(Fit).ToList();
+                Gaus_FWHL_Coef_Set.Add("intensity_M", intensity);
+                Gaus_FWHL_Coef_Set.Add("coef", coef);
+                Gaus_FWHL_Coef_Set.Add("FWHL", FWHL_G);
+                Gaus_FWHL_Coef_Set.Add("wavelength_M", wavelength);
+                Gaus_FWHL_Coef_Set.Add("pixel_M", Pixel);
+                fp.Dispose();
+                return Gaus_FWHL_Coef_Set;
+              
+            }
+
+        }
+
+
         public static Bitmap BufferToBitmap(byte[] Buffer) //改
         {
             if (Buffer == null || Buffer.Length == 0) { return null; }

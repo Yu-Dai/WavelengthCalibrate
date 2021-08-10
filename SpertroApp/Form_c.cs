@@ -1275,8 +1275,17 @@ namespace SpertroApp
                             }
                             Dictionary<string, List<double>> Gaus_FWHL_Coef_Set = new Dictionary<string, List<double>>();
                             Gaus_FWHL_Coef_Set = Math_Methods.Hg_FindPeak_And_Gaussian(Pure_Intensity, Wavelength, Convert.ToDouble(textBox12.Text), Convert.ToDouble(textBox13.Text), Convert.ToDouble(textBox14.Text));
-                            Gaus_FWHL_Coef_Set_1 = Math_Methods.Ar_FindPeak_And_Gaussian(this_SC_ID,Convert.ToInt32(textBox15.Text),Gaus_FWHL_Coef_Set, Pure_Intensity, Ar_Intensity, Wavelength, Convert.ToDouble(textBox12.Text), Convert.ToDouble(textBox13.Text), Convert.ToDouble(textBox14.Text));
-                            Wavelength = Gaus_FWHL_Coef_Set_1["wavelength_M"];
+                            if (HgW5_CK.Checked && HgW6_CK.Checked)
+                            {
+                                Gaus_FWHL_Coef_Set_1 = Math_Methods.Ar_FindPeak_And_Gaussian(this_SC_ID, Convert.ToInt32(textBox15.Text), Gaus_FWHL_Coef_Set, Pure_Intensity, Ar_Intensity, Wavelength, Convert.ToDouble(textBox12.Text), Convert.ToDouble(textBox13.Text), Convert.ToDouble(textBox14.Text));
+                                Wavelength = Gaus_FWHL_Coef_Set_1["wavelength_M"];
+                            }
+                            else
+                            {
+                                Gaus_FWHL_Coef_Set_1 = Math_Methods.Low_Hg_FindPeak_And_Gaussian(this_SC_ID, Pure_Intensity, Wavelength, Convert.ToDouble(textBox12.Text), Convert.ToDouble(textBox13.Text), Convert.ToDouble(textBox14.Text));
+                               
+                            }
+                           
                             for (int i = 0; i < Gaus_FWHL_Coef_Set_1["pixel_M"].Count; i++)
                             {
                                 Hg_Pixel.Add(Gaus_FWHL_Coef_Set_1["pixel_M"][i]);
@@ -5025,6 +5034,17 @@ namespace SpertroApp
         private void button25_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void checkBox10_CheckedChanged(object sender, EventArgs e)
+        {
+            HgW5_CK.Checked = true;
+            HgW6_CK.Checked = true;
+            if (checkBox10.Checked)
+            {
+                HgW5_CK.Checked = false;
+                HgW6_CK.Checked = false;
+            }
         }
 
         #endregion
