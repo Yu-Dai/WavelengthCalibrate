@@ -35,10 +35,14 @@ namespace SpertroApp
         public bool isWhite_PassNgTest = false; 
         public bool isWhitePass = false;
         public bool isWhiteNg = false;
+        public bool isWhite_Scale_Pass = false;
+        public bool isWhite_Scale_Ng = false;
         List<double> White_PassNg = new List<double>();
         //HG_AR_PASS_NG_TEST
         public bool isPass = false;
         public bool isNg = false;
+        public bool isHg_Scale_Pass = false;
+        public bool isHg_Scale_Ng = false;
         List<double> Hg_Ar_PassNg = new List<double>();
         public bool isHg_Ar_PassNgTest = false;
         //-------------------------
@@ -368,15 +372,27 @@ namespace SpertroApp
             }
             // Text = i.ToString();
             DrawCanvas.Top = roi_y;
-            // 
+            // ===============汞氬燈判定========================
             if (isPass)
             { Hg_Ar_PassNgTest_Result.Text = "Pass"; isPass = false; }
             else if (isNg)
             { Hg_Ar_PassNgTest_Result.Text = "NG"; isNg = false; }
+            //===============汞氬燈比例判定=====================
+            if (isHg_Scale_Pass)
+            { Hg_Ar_scale_PassNgTest_Result_label.Text = "Pass"; isHg_Scale_Pass = false; }
+            else if (isHg_Scale_Ng)
+            { Hg_Ar_scale_PassNgTest_Result_label.Text = "NG"; isHg_Scale_Ng = false; }
+            //=================白光判定==========================
             if (isWhitePass)
             { White_PassNgTest_Result.Text = "Pass"; isPass = false; }
             else if (isWhiteNg)
             { White_PassNgTest_Result.Text = "NG"; isNg = false; }
+            //==================白光比例判定=====================
+            if (isWhite_Scale_Pass)
+            { white_scale_PassNgTest_Result_label.Text = "Pass"; isWhite_Scale_Pass = false; }
+            else if (isWhite_Scale_Ng)
+            { white_scale_PassNgTest_Result_label.Text = "NG"; isWhite_Scale_Ng = false; }
+            //===================================================
             if (string.IsNullOrEmpty(Process_Now) == false)
             {
                 Log_textbox.Text +=DateTime.Now.ToString("yyyy/MM/dd/hh/mm/ss")+" : "+"\r\n" + Process_Now + "\r\n";
@@ -2483,22 +2499,39 @@ namespace SpertroApp
                     case 1200://
                         if (onlyWhite) 
                         {
-                            if (isWhite_PassNgTest)
+                            if ( hg_scale_passng_CKB.Checked)//比例判定
                             {
-                                if (White_PassNg[1] < Convert.ToDouble(LedBlueFWHM_threshold.Text) && White_PassNg[2] < Convert.ToDouble(LedYellowFWHM_threshold.Text))
+                               
+                                    if (White_PassNg[2] > Convert.ToDouble(Blue_Scale_txb.Text))
+                                    {
+                                        Process_Now = "白光比例判定 Pass";
+                                        isWhite_Scale_Pass = true;
+                                    }
+                                    else
+                                    {
+                                        Process_Now = "白光比例判定 Ng";
+                                        isWhite_Scale_Ng = true;
+                                    }                                                        
+                            }
+
+                            if (isWhite_PassNgTest)//白光判定
+                            {
+                                if(White_PassNg[1] < Convert.ToDouble(LedBlueFWHM_threshold.Text) && White_PassNg[2] < Convert.ToDouble(LedYellowFWHM_threshold.Text))
                                 {
-                                    Process_Now = "白光 Pass";
-                                    isWhitePass = true;
+                                  
+                                        Process_Now = "白光 Pass";
+                                        isWhitePass = true;                                   
                                 }
                                 else
                                 {
                                     Process_Now = "白光 Ng";
                                     isWhiteNg = true;
-                                }
-                                Thread.Sleep(1500);
-                                CaptureWindow("Result_AfterLorentz And Gaussian Fit");//截圖
-                                isWhite_PassNgTest = false;
+                                }                               
                             }
+                            Thread.Sleep(1500);
+                            CaptureWindow("Result_AfterLorentz And Gaussian Fit");//截圖
+                            isWhite_PassNgTest = false;
+
                             final_dg = textBox9.Text;
                             final_gamma = textBox10.Text;
                             final_back = textBox11.Text;
@@ -2507,14 +2540,30 @@ namespace SpertroApp
                         }
                         if (isHg_Ar_PassNgTest)
                         {
+                            if (hg_scale_passng_CKB.Checked)
+                            {
+                                if (Hg_Ar_PassNg[7] > Convert.ToDouble(P1_Scale_txb.Text)
+                                && Hg_Ar_PassNg[8] > Convert.ToDouble(P2_Scale_txb.Text)
+                                && Hg_Ar_PassNg[9] > Convert.ToDouble(P3_Scale_txb.Text))
+                                {
+                                    Process_Now = "汞氬燈比例判定 Pass";
+                                    isHg_Scale_Pass = true;
+                                }
+                                else
+                                {
+                                    Process_Now = "汞氬燈比例判定 Ng";
+                                    isHg_Scale_Ng = true;
+                                }
+                            }
                             if (Hg_Ar_PassNg[1] < Convert.ToDouble(BaseLineRMSE_threshold.Text) && Hg_Ar_PassNg[2] < Convert.ToDouble(FWHM_RMSE_threshold.Text))
-                            {
-                                Process_Now = "汞氬燈 Pass";
-                                isPass = true; }
-                            else
-                            {
+                            {                              
+                                    Process_Now = "汞氬燈 Pass";
+                                    isPass = true;                                                           
+                            }
+                            else{
                                 Process_Now = "汞氬燈 Ng";
-                                isNg = true; }
+                                isNg = true; 
+                            }
                             Thread.Sleep(1500);
                             CaptureWindow("Result_AfterLorentz And addBaseLine");//截圖
                             isHg_Ar_PassNgTest = false;

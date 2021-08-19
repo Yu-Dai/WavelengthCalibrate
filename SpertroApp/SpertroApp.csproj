@@ -67,8 +67,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\Matlab_DLL\gaussfit.dll</HintPath>
     </Reference>
-    <Reference Include="hg_data_Separate">
-      <HintPath>..\..\..\matlab01\bin\hg_data_Separate_V4\for_redistribution_files_only\hg_data_Separate.dll</HintPath>
+    <Reference Include="hg_data_Separate, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\MATLAB_M檔\Algorithm_by_matlab\hg_data_Separate\for_redistribution_files_only\hg_data_Separate.dll</HintPath>
     </Reference>
     <Reference Include="lorentzfit">
       <HintPath>..\..\..\..\matlab01\bin\lorentzfit\for_redistribution_files_only\lorentzfit.dll</HintPath>
@@ -121,8 +122,9 @@
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
-    <Reference Include="white_lorentz_and_gaussian">
-      <HintPath>..\..\..\matlab01\bin\white_lorentz_and_gaussian\for_redistribution_files_only\white_lorentz_and_gaussian.dll</HintPath>
+    <Reference Include="White_Lorentz_and_Gaussian, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\MATLAB_M檔\Algorithm_by_matlab\White_Lorentz_and_Gaussian\for_redistribution_files_only\White_Lorentz_and_Gaussian.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

@@ -21,7 +21,7 @@ using Comebine_Poly_And_Plot;
 using lorentzfit;
 using System.IO;
 using hg_data_Separate;
-using white_lorentz_and_gaussian;
+using White_Lorentz_and_Gaussian;
 
 namespace SpectroChipApp
 {
@@ -31,10 +31,10 @@ namespace SpectroChipApp
         public static List<double> White_PassNgTest(List<double> WhiteIntensity, string SC_ID)
         {
             List<double> Result = new List<double>();
-            White_Pass_Ng_Test  White_PassNgTest = new White_Pass_Ng_Test();
+            WhitePassNgTest  White_PassNgTest = new WhitePassNgTest();
             MWArray WhiteIntensity_M = (MWNumericArray)WhiteIntensity.ToArray();
             MWCharArray ID = (MWCharArray)SC_ID;
-            MWArray Result_Parameter_M = White_PassNgTest.white_lorentz_and_gaussian(WhiteIntensity_M, ID);
+            MWArray Result_Parameter_M = White_PassNgTest.White_Lorentz_and_Gaussian(WhiteIntensity_M, ID);
             double[,] Result_Parameter = (double[,])((MWNumericArray)Result_Parameter_M).ToArray(MWArrayComponent.Real);
             for (int i = 0; i < Result_Parameter.Length; i++)
             {
@@ -45,7 +45,7 @@ namespace SpectroChipApp
         public static List<double> Hg_Ar_PassNgTest(List<double> HgArIntensity,string SC_ID)
         {
             List<double> Result = new List<double>();
-            Hg_Ar_PassNgTest hg_Ar_PassNgTest = new Hg_Ar_PassNgTest();
+            HgPassNgTest hg_Ar_PassNgTest = new HgPassNgTest();
             MWArray HgArIntensity_M = (MWNumericArray)HgArIntensity.ToArray();
             MWCharArray ID = (MWCharArray)SC_ID;
             MWArray Result_Parameter_M = hg_Ar_PassNgTest.hg_data_Separate(HgArIntensity_M,ID);
