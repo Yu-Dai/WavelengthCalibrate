@@ -1029,6 +1029,7 @@ namespace SpertroApp
                         }
                         Index_of_Max = 0;
                         isAutoScaling_FisrtStep_Complete = false;
+                        Thread.Sleep(2000);
                         break;
 
                     case 638:
@@ -2499,10 +2500,10 @@ namespace SpertroApp
                     case 1200://
                         if (onlyWhite) 
                         {
-                            if ( hg_scale_passng_CKB.Checked)//比例判定
+                            if (White_scale_passng_CKB.Checked)//比例判定
                             {
                                
-                                    if (White_PassNg[2] > Convert.ToDouble(Blue_Scale_txb.Text))
+                                    if (White_PassNg[3] > Convert.ToDouble(Blue_Scale_txb.Text))
                                     {
                                         Process_Now = "白光比例判定 Pass";
                                         isWhite_Scale_Pass = true;
@@ -5047,6 +5048,7 @@ namespace SpertroApp
             Pause = false;
             iTask = 615;
             isHg_Ar = true;
+            onlyWhite = false;
             btn_Start1.Enabled = true;
             btn_Start2.Enabled = true;
             Hg2WFHM = true;
@@ -5074,6 +5076,7 @@ namespace SpertroApp
             Pause = false;
             iTask = 625;
             onlyWhite = true;
+            isHg_Ar = false;
             back_number = 0;
             checkBox8.Checked = true;
             gamma_number = 100;

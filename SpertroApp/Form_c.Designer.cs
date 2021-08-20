@@ -2247,7 +2247,7 @@
             this.P3_Scale_txb.Name = "P3_Scale_txb";
             this.P3_Scale_txb.Size = new System.Drawing.Size(35, 27);
             this.P3_Scale_txb.TabIndex = 184;
-            this.P3_Scale_txb.Text = "0.8";
+            this.P3_Scale_txb.Text = "0.4";
             // 
             // label54
             // 
@@ -2276,7 +2276,7 @@
             this.P2_Scale_txb.Name = "P2_Scale_txb";
             this.P2_Scale_txb.Size = new System.Drawing.Size(35, 27);
             this.P2_Scale_txb.TabIndex = 181;
-            this.P2_Scale_txb.Text = "0.8";
+            this.P2_Scale_txb.Text = "0.4";
             // 
             // label61
             // 
@@ -2316,7 +2316,7 @@
             this.P1_Scale_txb.Name = "P1_Scale_txb";
             this.P1_Scale_txb.Size = new System.Drawing.Size(35, 27);
             this.P1_Scale_txb.TabIndex = 175;
-            this.P1_Scale_txb.Text = "0.8";
+            this.P1_Scale_txb.Text = "0.1";
             // 
             // groupBox11
             // 

@@ -20,8 +20,8 @@ using SingleLaser_Poly_And_Plot;
 using Comebine_Poly_And_Plot;
 using lorentzfit;
 using System.IO;
-using hg_data_Separate;
 using White_Lorentz_and_Gaussian;
+using hg_data_Separate;
 
 namespace SpectroChipApp
 {
@@ -40,6 +40,7 @@ namespace SpectroChipApp
             {
                 Result.Add(Result_Parameter[0, i]);
             }
+            White_PassNgTest.Dispose();
             return Result;
         }
         public static List<double> Hg_Ar_PassNgTest(List<double> HgArIntensity,string SC_ID)
@@ -54,6 +55,7 @@ namespace SpectroChipApp
             {
                 Result.Add(Result_Parameter[0,i]);
             }
+            hg_Ar_PassNgTest.Dispose();
             return Result;
         } 
 
@@ -253,7 +255,7 @@ namespace SpectroChipApp
             double[,] dd;
             dd = (double[,])((MWNumericArray)Array_M).ToArray();
             double[] d = new double[5];//預設大小是5，用來放POLY擬和後的參數
-            for (int i = 0; i < dd.Length; i++) d[i] = dd[0, dd.Length - i - 1];
+            for (int i = 0; i < dd.Length; i++) d[i] = Math.Round(dd[0, dd.Length - i - 1],6);
 
             return d;
         }
@@ -437,9 +439,21 @@ namespace SpectroChipApp
         public static List<double> Remove_BaseLine(List<double> Original_Intensity, List<double> Dark_Intensity)
         {
             int Data_Length = Original_Intensity.Count;
+            double dark = 0;
+            for (int i = 0; i<50;i++)
+            {
+                dark += Original_Intensity[i];
+            }
+            dark /= 51;
             List<double> Pure_Intensity = new List<double>(Data_Length);
-
-            for (int i = 0; i < Data_Length; i++) Pure_Intensity.Add(Original_Intensity[i] - Dark_Intensity[i]);
+            if (Dark_Intensity.Count != Original_Intensity.Count)
+            {
+                for (int i = 0; i < Data_Length; i++) Pure_Intensity.Add(Original_Intensity[i] - dark);
+            }
+            else 
+            {
+                for (int i = 0; i < Data_Length; i++) Pure_Intensity.Add(Original_Intensity[i] - Dark_Intensity[i]);
+            }        
 
             return Pure_Intensity;
         }
