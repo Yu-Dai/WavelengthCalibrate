@@ -25,11 +25,15 @@ namespace SpertroApp
 
     public partial class Form1 : Form
     {
+        public bool RoiUPdate = false;
+        public int StopTask = 0;
+        public bool isContinue = false;
         //AG 處理        
         public int sepPoint;
         public bool isGetSepPoint = false;
         public bool is626 = true;
         //進度顯示
+        public string Process_Last = " ";
         public string Process_Now = "";
         //White Pass Ng Test
         public bool isWhite_PassNgTest = false; 
@@ -371,7 +375,14 @@ namespace SpertroApp
                 isGetSepPoint = false;
             }
             // Text = i.ToString();
+          
             DrawCanvas.Top = roi_y;
+            if (iTask == 1450 && RoiUPdate)
+            {
+                this.ROI_UpDown.Value = roi_y;
+                RoiUPdate = false;
+            }
+            
             // ===============汞氬燈判定========================
             if (isPass)
             { Hg_Ar_PassNgTest_Result.Text = "Pass"; isPass = false; }
@@ -395,10 +406,14 @@ namespace SpertroApp
             //===================================================
             if (string.IsNullOrEmpty(Process_Now) == false)
             {
-                Log_textbox.Text +=DateTime.Now.ToString("yyyy/MM/dd/hh/mm/ss")+" : "+"\r\n" + Process_Now + "\r\n";
-                Log_textbox.ScrollBars = ScrollBars.Vertical;
-                Log_textbox.SelectionStart = Log_textbox.Text.Length;
-                Log_textbox.ScrollToCaret();
+                if (Process_Last != Process_Now)
+                {
+                    Log_textbox.Text += DateTime.Now.ToString("yyyy/MM/dd/hh/mm/ss") + " : " + "\r\n" + Process_Now + "\r\n";
+                    Log_textbox.ScrollBars = ScrollBars.Vertical;
+                    Log_textbox.SelectionStart = Log_textbox.Text.Length;
+                    Log_textbox.ScrollToCaret();
+                    Process_Last = Process_Now;
+                }                
             }
             //progressROI.Value = proc;
             richTextBox1.Text = Context;
@@ -568,7 +583,7 @@ namespace SpertroApp
                         Process_Now = "ROI 預覽";
                         ROI_Y = Step_1.RoiScan(BufferToImage(FULLimgbuffer))["y"];
                         isGetROI = true;
-                        iTask = 1300;
+                        iTask = 1400;
                         break;
 
                     case 150: //s
@@ -578,13 +593,13 @@ namespace SpertroApp
 
                     case 200:  //RoiScan
                         Process_Now = "ROI Scan";
-                        iTask = 300;                      
+                        StopTask = 200;
+                        iTask = 1400;
                         ROI_Y = Step_1.RoiScan(BufferToImage(FULLimgbuffer))["y"];
                         isGetROI = true;
                         break;
 
                     case 300:
-
 
                         iTask = 400;
 
@@ -824,8 +839,10 @@ namespace SpertroApp
                         {
                             ROI_Y = Step_1.RoiScan(BufferToImage(FULLimgbuffer))["y"];
                             isGetROI = true;
+                            StopTask = 622;//622,623
+                            iTask = 1400;
                         }
-                        iTask = 623;
+                        else { iTask = 623; }
                         break;
 
                     case 623:
@@ -880,8 +897,10 @@ namespace SpertroApp
                                 Dark_Intensity = RealTime_Original_Intensity;
                                 ROI_Y = Step_1.RoiScan(BufferToImage(FULLimgbuffer))["y"];
                                 isGetROI = true;
+                                StopTask = 625;//622,623  625,630
+                                iTask = 1400;
                             }
-                            iTask = 630;
+                            else { iTask = 630; }
                         }
                         else
                         {
@@ -2580,7 +2599,32 @@ namespace SpertroApp
                             Process_Now = "量測結束";
                             isend = true;
                         }
-                        iTask = 1400;
+                        iTask = 1500;
+                        break;
+
+                    case 1400: //ROI等待區
+                        RoiUPdate = true;
+                        iTask = 1450;
+                        MessageBox.Show("請於調整完ROI區域後，按下'調整完成 繼續計算'按鈕，繼續量測");
+                        break;
+
+                    case 1450: //ROI等待區
+                        if (isContinue)
+                        {
+                            switch (StopTask)
+                            {
+                                case 200:
+                                    iTask = 300;
+                                    break;
+                                case 622:
+                                    iTask = 623;
+                                    break;
+                                case 625:
+                                    iTask = 630;
+                                    break;
+                            }
+                            isContinue = false;
+                        }
                         break;
 
                 }
@@ -2753,40 +2797,33 @@ namespace SpertroApp
 
 
         private async void timer1_Tick(object sender, EventArgs e)
-        {
-            //在CCDIMAGE 上 畫出矩形
-           /* Graphics g = CCDImage.CreateGraphics();
-            Rectangle rect = new Rectangle(DrawCanvas.Location.X - CCDImage.Location.X, DrawCanvas.Location.Y, DrawCanvas.Width, DrawCanvas.Height);
-            g.DrawRectangle(new Pen(Color.White, 2), rect);
-            */
-            //--------------------------------------------------------------------------------------------------------------------------------------------
-            //Text = camera.Size.Width.ToString() + "," + camera.Size.Height.ToString();
-            //RotateNoneFlipX
+        {         
+            Bitmap myBitmap = camera.GetBitmap();     //取像
+            myBitmap.RotateFlip(RotateFlipType.RotateNoneFlipX);  //影像水平翻轉180度
 
-            Bitmap myBitmap = camera.GetBitmap();
-            myBitmap.RotateFlip(RotateFlipType.RotateNoneFlipX);
-
+            //=====================解析度上的影像縮放(不用管)==============
             scaleX = camera.Size.Width / CCDImage.Width;
             scaleY = camera.Size.Height / CCDImage.Height;
-
+            //=========================取ROI影像==========================
             int x = Convert.ToInt32(DrawCanvas.Left * scaleX);
             int y = Convert.ToInt32(DrawCanvas.Top * scaleY);
             int w = Convert.ToInt32(DrawCanvas.Width * scaleX);
-            int h = Convert.ToInt32(DrawCanvas.Height * scaleY); //11/24
-            Rectangle cloneRect = new Rectangle(x, y, w, h);
+            int h = Convert.ToInt32(DrawCanvas.Height * scaleY); 
+            Rectangle cloneRect = new Rectangle(x, y, w, h);  //設定ROI
             System.Drawing.Imaging.PixelFormat format = myBitmap.PixelFormat;
-
-
             // Bitmap cloneBitmap = myBitmap.Clone(cloneRect, format);
-            Bitmap cloneBitmap = crop(myBitmap, cloneRect);
+            Bitmap cloneBitmap = crop(myBitmap, cloneRect);//複製出ROI影像
 
-            ROIImage.Left = DrawCanvas.Left;
+            ROIImage.Left = DrawCanvas.Left; //修改ROI控件位置
             ROIImage.Top = DrawCanvas.Top;
             ROIImage.Height = DrawCanvas.Height;
             ROIImage.Width = DrawCanvas.Width;
-
+            //=================================================================================
+            //==============================影像轉為BYTE=======================================
             byte[] FULLBuffer = ImageToBuffer(myBitmap, System.Drawing.Imaging.ImageFormat.Bmp);
             byte[] ROIBuffer = ImageToBuffer(cloneBitmap, System.Drawing.Imaging.ImageFormat.Bmp);
+            //=================================================================================
+            //==============================動態繪出光譜圖=====================================
             if (checkBox1.Checked) displayOriginal(ROIBuffer, x);
             if (checkBox9.Checked && isAutoScaling_END && isAvgEnd)
             {
@@ -2813,6 +2850,8 @@ namespace SpertroApp
                     isClear = true;
                 }
             }
+            //=================================================================================
+            //=================================ROI區域繪製白色矩形============================
             #region 畫ROI矩形
             if (isGetROI)
             {
@@ -2824,6 +2863,7 @@ namespace SpertroApp
                 g.DrawRectangle(new Pen(Color.White, 2), rect1);
             }
             #endregion
+            //================================================================================
             CCDImage.Image = myBitmap;
             ROIImage.Image = cloneBitmap;
 
@@ -2842,24 +2882,14 @@ namespace SpertroApp
             List<double> RealTime_Intensity = new List<double>(RealTime_Original_Intensity);
 
             //  Calibrate_EXP(FULLBuffer);
-            Text = "Process...";
-            /*
-            if (Step == 1)
-            { 
-             var processTask1 = SpertroImageProcess(FULLBuffer, x);
-            Task processFinishTask1 = await Task.WhenAny(processTask1);            
-            }
-            if (Step == 2)
-            {
-                var processTask2 = Peak_Looking_Task(ROIBuffer, Original_Intensity);
-                Task processFinishTask2 = await Task.WhenAny(processTask2);
-            }*/
+            Text = "Process...";         
+            //==========================影像丟入運算========================
             if (!Pause)
             {
                 var processTask1 = SpertroImageProcess(FULLBuffer, x);
                 Task processFinishTask1 = await Task.WhenAny(processTask1);
             }
-
+            //==============================================================
 
 
             Interlocked.Exchange(ref inTimer, 0);
@@ -5101,6 +5131,17 @@ namespace SpertroApp
         private void label60_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void btn_Roi_OK_Click(object sender, EventArgs e)
+        {
+            isContinue = true;
+        }
+
+        private void ROI_UpDown_ValueChanged(object sender, EventArgs e)
+        {
+            DrawCanvas.Top = (int)ROI_UpDown.Value;
+            ROI_Y = (int)((double)ROI_UpDown.Value * scaleY);
         }
 
         #endregion

@@ -170,6 +170,9 @@
             this.tabControl2 = new System.Windows.Forms.TabControl();
             this.tabPage6 = new System.Windows.Forms.TabPage();
             this.panel10 = new System.Windows.Forms.Panel();
+            this.btn_Roi_OK = new System.Windows.Forms.Button();
+            this.label66 = new System.Windows.Forms.Label();
+            this.ROI_UpDown = new System.Windows.Forms.NumericUpDown();
             this.groupBox12 = new System.Windows.Forms.GroupBox();
             this.white_scale_PassNgTest_Result_label = new System.Windows.Forms.Label();
             this.label65 = new System.Windows.Forms.Label();
@@ -342,6 +345,7 @@
             this.tabControl2.SuspendLayout();
             this.tabPage6.SuspendLayout();
             this.panel10.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.ROI_UpDown)).BeginInit();
             this.groupBox12.SuspendLayout();
             this.groupBox9.SuspendLayout();
             this.groupBox7.SuspendLayout();
@@ -557,7 +561,7 @@
             // 
             this.btn_Start1.BackColor = System.Drawing.Color.LawnGreen;
             this.btn_Start1.Font = new System.Drawing.Font("新細明體", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.btn_Start1.Location = new System.Drawing.Point(0, 134);
+            this.btn_Start1.Location = new System.Drawing.Point(1, 158);
             this.btn_Start1.Margin = new System.Windows.Forms.Padding(2);
             this.btn_Start1.Name = "btn_Start1";
             this.btn_Start1.Size = new System.Drawing.Size(325, 108);
@@ -1737,6 +1741,9 @@
             // 
             // panel10
             // 
+            this.panel10.Controls.Add(this.btn_Roi_OK);
+            this.panel10.Controls.Add(this.label66);
+            this.panel10.Controls.Add(this.ROI_UpDown);
             this.panel10.Controls.Add(this.groupBox12);
             this.panel10.Controls.Add(this.groupBox9);
             this.panel10.Controls.Add(this.button22);
@@ -1752,6 +1759,39 @@
             this.panel10.Name = "panel10";
             this.panel10.Size = new System.Drawing.Size(564, 269);
             this.panel10.TabIndex = 136;
+            // 
+            // btn_Roi_OK
+            // 
+            this.btn_Roi_OK.Location = new System.Drawing.Point(185, 128);
+            this.btn_Roi_OK.Name = "btn_Roi_OK";
+            this.btn_Roi_OK.Size = new System.Drawing.Size(123, 23);
+            this.btn_Roi_OK.TabIndex = 182;
+            this.btn_Roi_OK.Text = "調整完成 計算繼續";
+            this.btn_Roi_OK.UseVisualStyleBackColor = true;
+            this.btn_Roi_OK.Click += new System.EventHandler(this.btn_Roi_OK_Click);
+            // 
+            // label66
+            // 
+            this.label66.AutoSize = true;
+            this.label66.Font = new System.Drawing.Font("標楷體", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.label66.Location = new System.Drawing.Point(10, 129);
+            this.label66.Name = "label66";
+            this.label66.Size = new System.Drawing.Size(106, 19);
+            this.label66.TabIndex = 181;
+            this.label66.Text = "ROI調整 :";
+            // 
+            // ROI_UpDown
+            // 
+            this.ROI_UpDown.Location = new System.Drawing.Point(124, 129);
+            this.ROI_UpDown.Maximum = new decimal(new int[] {
+            1000,
+            0,
+            0,
+            0});
+            this.ROI_UpDown.Name = "ROI_UpDown";
+            this.ROI_UpDown.Size = new System.Drawing.Size(50, 22);
+            this.ROI_UpDown.TabIndex = 180;
+            this.ROI_UpDown.ValueChanged += new System.EventHandler(this.ROI_UpDown_ValueChanged);
             // 
             // groupBox12
             // 
@@ -1922,7 +1962,7 @@
             this.groupBox7.Controls.Add(this.radioButton1);
             this.groupBox7.Controls.Add(this.radioButton2);
             this.groupBox7.Font = new System.Drawing.Font("標楷體", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.groupBox7.Location = new System.Drawing.Point(8, 47);
+            this.groupBox7.Location = new System.Drawing.Point(3, 33);
             this.groupBox7.Name = "groupBox7";
             this.groupBox7.Size = new System.Drawing.Size(317, 82);
             this.groupBox7.TabIndex = 135;
@@ -3657,6 +3697,7 @@
             this.tabPage6.ResumeLayout(false);
             this.panel10.ResumeLayout(false);
             this.panel10.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.ROI_UpDown)).EndInit();
             this.groupBox12.ResumeLayout(false);
             this.groupBox12.PerformLayout();
             this.groupBox9.ResumeLayout(false);
@@ -4023,6 +4064,9 @@
         private System.Windows.Forms.Label label54;
         private System.Windows.Forms.Label label56;
         private System.Windows.Forms.TextBox P2_Scale_txb;
+        private System.Windows.Forms.Button btn_Roi_OK;
+        private System.Windows.Forms.Label label66;
+        private System.Windows.Forms.NumericUpDown ROI_UpDown;
     }
 }
 

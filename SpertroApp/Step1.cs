@@ -11,12 +11,12 @@ namespace SpertroApp
       // public int progressBar = 0;
 
 
-        public static IDictionary<string, int> RoiScan(Bitmap input_image0)
+        public static Dictionary<string, int> RoiScan(Bitmap input_image0)
         {
             // Scan_Line.Visible = true;
             Bitmap input_image = new Bitmap(input_image0.Width, input_image0.Height);
             input_image = input_image0;
-            IDictionary<string, int> ROI = new Dictionary<string, int>();
+            Dictionary<string, int> ROI = new Dictionary<string, int>();
             /*
             ROI.Add("x", 0);//不變
             ROI.Add("y", 0);
