@@ -25,6 +25,7 @@ namespace SpertroApp
 
     public partial class Form1 : Form
     {
+        public int LastLaserCh_Number = 0;
         public bool RoiUPdate = false;
         public int StopTask = 0;
         public bool isContinue = false;
@@ -1334,7 +1335,7 @@ namespace SpertroApp
                         else if (checkBox5.Checked && isLaser)
                         {
                            
-                            if (Laser <= 8)
+                            if (Laser <= LastLaserCh_Number)
                             {
                                 int p_ = 0;
                                 int Max_Index = 0;
@@ -4075,30 +4076,37 @@ namespace SpertroApp
                     if (isch1)
                     {
                         isch1 = true; btn_Ch1.BackColor = Color.Green;
+                        LastLaserCh_Number = 1;
                     }
                     if (isch2)
                     {
                         isch2 = true; btn_Ch2.BackColor = Color.Green;
+                        LastLaserCh_Number = 2;
                     }
                     if (isch3)
                     {
                         isch3 = true; btn_Ch3.BackColor = Color.Green;
+                        LastLaserCh_Number = 3;
                     }
                     if (isch5)
                     {
                         isch5 = true; btn_Ch5.BackColor = Color.Green;
+                        LastLaserCh_Number = 5;
                     }
                     if (isch6)
                     {
                         isch6 = true; btn_Ch6.BackColor = Color.Green;
+                        LastLaserCh_Number = 6;
                     }
                     if (isch7)
                     {
                         isch7 = true; btn_Ch7.BackColor = Color.Green;
+                        LastLaserCh_Number = 7;
                     }
                     if (isch8)
                     {
                         isch8 = true; btn_Ch8.BackColor = Color.Green;
+                        LastLaserCh_Number = 8;
                     }
                     if (isch1 == false && isch2 == false && isch3 == false && isch4 == false && isch5 == false && isch6 == false && isch7 == false && isch8 == false)
                     {
@@ -4109,6 +4117,7 @@ namespace SpertroApp
                         isch6 = true; btn_Ch6.BackColor = Color.Green;
                         isch7 = true; btn_Ch7.BackColor = Color.Green;
                         isch8 = true; btn_Ch8.BackColor = Color.Green;
+                        LastLaserCh_Number = 8;
                     }
                     AllinOneMode.Checked = false;
                     CH1_CHECK.Checked = false;
